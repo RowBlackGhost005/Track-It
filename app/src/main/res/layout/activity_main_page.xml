@@ -87,11 +87,14 @@
             android:id="@+id/ibMainPage_myAccount"
             android:layout_width="215dp"
             android:layout_height="96dp"
+            android:layout_marginStart="-10dp"
             android:layout_marginLeft="-5dp"
+            android:layout_marginEnd="-10dp"
             android:layout_marginRight="-5dp"
+            android:layout_marginBottom="-10dp"
             android:layout_toRightOf="@id/ibMainPage_myTrackings"
-            android:src="@drawable/micuenta"
-            android:backgroundTint="@color/secondAppColor"/>
+            android:backgroundTint="@color/secondAppColor"
+            android:src="@drawable/micuenta" />
 
     </RelativeLayout>
 

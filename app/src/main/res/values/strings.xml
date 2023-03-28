@@ -28,4 +28,13 @@
     <!--Pagina Principal-->
     <string name="noPackageRegisted">No hay envíos registrados</string>
     <string name="addParcel">Añadir número de rastreo</string>
+
+    <!--Añadir Numero Rastreo-->
+    <string name="addTrackingNumber">Añadir número de rastreo</string>
+    <string name="trackingNumber">Número de rastreo</string>
+    <string name="typeTrackingNumber">Introducir número de rastreo</string>
+    <string name="dontKnowTrackingNumber">No me sé el código de rastreo</string>
+    <string name="scanQrCode">Escanear QR de rastreo</string>
+    <string name="trackByQr">Rastrear por QR</string>
+    <string name="trackPackage">Rastrear envío</string>
 </resources>

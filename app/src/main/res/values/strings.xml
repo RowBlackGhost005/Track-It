@@ -24,4 +24,8 @@
     <string name="noCodeReceived">No me ha llegado el código</string>
     <string name="resendCode">Volver a enviar</string>
     <string name="privacyDisclaimer">Al continuar usted acepta nuestro Términos y Condiciones del servicio además de permitirnos compartir información por su correo electrónico</string>
+
+    <!--Pagina Principal-->
+    <string name="noPackageRegisted">No hay envíos registrados</string>
+    <string name="addParcel">Añadir número de rastreo</string>
 </resources>

@@ -10,9 +10,9 @@ class CreateAccount : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_account)
 
-        var btnRegister: Button = findViewById(R.id.btnCreateAccount_continue)
+        var btnContinue: Button = findViewById(R.id.btnCreateAccount_continue)
 
-        btnRegister.setOnClickListener(){
+        btnContinue.setOnClickListener(){
             var intent: Intent = Intent(this , VerifyAccount::class.java)
             startActivity(intent)
         }

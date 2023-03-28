@@ -16,5 +16,12 @@ class MainActivity : AppCompatActivity() {
             var intent: Intent = Intent(this , CreateAccount::class.java)
             startActivity(intent)
         }
+
+        var btnLogin: Button = findViewById(R.id.btnMain_login)
+
+        btnLogin.setOnClickListener(){
+            var intent: Intent = Intent(this , MainPage::class.java)
+            startActivity(intent)
+        }
     }
 }

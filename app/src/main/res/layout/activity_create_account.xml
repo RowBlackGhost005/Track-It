@@ -5,34 +5,48 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
-
-    <ImageView
-        android:id="@+id/ivMain_logo"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:src="@drawable/trackitlogo"
-        android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        />
+    tools:context=".CreateAccount">
 
     <TextView
-        android:id="@+id/tvMain_title"
+        android:id="@+id/tvCreateAccount_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:gravity="center"
-        android:fontFamily="@font/montserrat_bolditalic"
-        android:text="@string/app_name"
+        android:fontFamily="@font/lato_bold"
+        android:text="@string/createAccount"
         android:textColor="@color/mainTextColor"
-        android:textSize="42sp"/>
+        android:textSize="24sp"/>
+
+    <ImageView
+        android:id="@+id/ivCreateAccount_addImage"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_gravity="center"
+        android:layout_marginVertical="8dp"
+        android:src="@drawable/agregarimagen"/>
 
     <EditText
-        android:id="@+id/etMain_user"
+        android:id="@+id/etCreateAccount_fullName"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginHorizontal="10dp"
-        android:layout_marginVertical="10dp"
+        android:layout_marginVertical="4dp"
+        android:layout_gravity="center"
+        android:ems="24"
+        android:inputType="text"
+        android:hint="@string/fullName"
+        android:textSize="16sp"
+        android:fontFamily="@font/lato_regular"
+        android:textColorHint="@color/secondTextColor"
+        android:textColor="@color/secondTextColor" />
+
+    <EditText
+        android:id="@+id/etCreateAccount_username"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginVertical="4dp"
         android:layout_gravity="center"
         android:ems="24"
         android:inputType="text"
@@ -43,11 +57,26 @@
         android:textColor="@color/secondTextColor" />
 
     <EditText
-        android:id="@+id/etMain_password"
+        android:id="@+id/etCreateAccount_email"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginVertical="10dp"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginVertical="4dp"
+        android:layout_gravity="center"
+        android:ems="24"
+        android:inputType="text"
+        android:hint="@string/email"
+        android:textSize="16sp"
+        android:fontFamily="@font/lato_regular"
+        android:textColorHint="@color/secondTextColor"
+        android:textColor="@color/secondTextColor" />
+
+    <EditText
+        android:id="@+id/etCreateAccount_password"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginVertical="4dp"
         android:layout_gravity="center"
         android:ems="24"
         android:inputType="textPassword"
@@ -55,46 +84,36 @@
         android:textSize="16sp"
         android:fontFamily="@font/lato_regular"
         android:textColorHint="@color/secondTextColor"
-        android:textColor="@color/secondTextColor"/>
+        android:textColor="@color/secondTextColor" />
 
-    <TextView
-        android:id="@+id/tvMain_forgotPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="32dp"
-        android:layout_marginHorizontal="10dp"
-        android:layout_gravity="end"
-        android:gravity="center"
+    <EditText
+        android:id="@+id/etCreateAccount_confirmPassword"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginVertical="4dp"
+        android:layout_gravity="center"
+        android:ems="24"
+        android:inputType="textPassword"
+        android:hint="@string/confirmPasword"
         android:textSize="16sp"
         android:fontFamily="@font/lato_regular"
-        android:text="@string/forgotPassword"
-        android:textColor="@color/secondTextColor"/>
-
+        android:textColorHint="@color/secondTextColor"
+        android:textColor="@color/secondTextColor" />
 
     <Button
-        android:id="@+id/btnMain_login"
+        android:id="@+id/btnCreateAccount_continue"
         android:layout_width="196dp"
         android:layout_height="55dp"
         android:layout_marginVertical="16dp"
         android:gravity="center"
-        android:text="@string/login"
+        android:text="@string/continuee"
         android:textColor="@color/contrastTextColor"
         android:fontFamily="@font/lato_bold"
         android:layout_gravity="center"/>
-
-    <Button
-        android:id="@+id/btnMain_register"
-        android:layout_width="196dp"
-        android:layout_height="55dp"
-        android:gravity="center"
-        android:text="@string/register"
-        android:textColor="@color/contrastTextColor"
-        android:fontFamily="@font/lato_bold"
-        android:layout_gravity="center"/>
-
-
 
     <TextView
-        android:id="@+id/tvMain_loginWith"
+        android:id="@+id/tvCreateAccount_loginWith"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -105,14 +124,14 @@
         android:textColor="@color/secondTextColor"/>
 
     <LinearLayout
-        android:id="@+id/llMain_loginWith"
+        android:id="@+id/llCreateAccount_loginWith"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center">
 
         <ImageView
-            android:id="@+id/ivMain_facebookLogin"
+            android:id="@+id/ivCreateAccount_facebookLogin"
             android:layout_width="72dp"
             android:layout_height="72dp"
             android:layout_marginHorizontal="32dp"
@@ -120,7 +139,7 @@
             android:src="@drawable/facebooklogin"/>
 
         <ImageView
-            android:id="@+id/ivMain_instagramLogin"
+            android:id="@+id/ivCreateAccount_instagramLogin"
             android:layout_width="72dp"
             android:layout_height="72dp"
             android:layout_marginHorizontal="32dp"
@@ -128,7 +147,7 @@
             android:src="@drawable/instagramlogin"/>
 
         <ImageView
-            android:id="@+id/ivMain_googleLogin"
+            android:id="@+id/ivCreateAccount_googleLogin"
             android:layout_width="72dp"
             android:layout_height="72dp"
             android:layout_marginHorizontal="32dp"

@@ -1,3 +1,27 @@
 <resources>
     <string name="app_name">Track It!</string>
+
+    <!--Main Activity-->
+    <string name="userName">Nombre de usuario</string>
+    <string name="password">Contraseña</string>
+    <string name="forgotPassword">Olvidé mi Contraseña</string>
+    <string name="login">Iniciar Sesión</string>
+    <string name="loginWith">Iniciar Con:</string>
+    <string name="register">Registrarse</string>
+
+    <!--Crear Cuenta-->
+    <string name="createAccount">Crear Cuenta</string>
+    <string name="fullName">Nombre completo</string>
+    <string name="email">Correo electrónico</string>
+    <string name="confirmPasword">Confirmar contraseña</string>
+    <string name="continuee">Continuar</string>
+
+    <!--Verificar Cuenta-->
+    <string name="verifyAccount">Verificación de cuenta</string>
+    <string name="userNamePlaceHolder">#Username#</string>
+    <string name="checkEmailPlaceHolder">Se ha enviado un correo a correo@mail.com un código de verificación para crear tu cuenta.</string>
+    <string name="verifyCode">Código de verificación</string>
+    <string name="noCodeReceived">No me ha llegado el código</string>
+    <string name="resendCode">Volver a enviar</string>
+    <string name="privacyDisclaimer">Al continuar usted acepta nuestro Términos y Condiciones del servicio además de permitirnos compartir información por su correo electrónico</string>
 </resources>

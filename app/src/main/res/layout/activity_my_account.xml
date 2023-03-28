@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MyAccount">
+
+    <TextView
+        android:id="@+id/tvMyAccount_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:fontFamily="@font/lato_bold"
+        android:text="@string/myAccount"
+        android:textColor="@color/mainTextColor"
+        android:textSize="24sp"/>
+
+    <ImageView
+        android:id="@+id/ivMyAccount_addImage"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_gravity="center"
+        android:layout_marginVertical="8dp"
+        android:src="@drawable/agregarimagen"/>
+
+    <GridLayout
+        android:id="@+id/glMyAccount_features"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:rowCount="5">
+
+        <TextView
+            android:id="@+id/tvMainPage_noParcelRegisted"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_gravity="start"
+            android:layout_columnSpan="2"
+            android:fontFamily="@font/lato_bold"
+            android:text="@string/features"
+            android:textColor="@color/mainTextColor"
+            android:textSize="18sp"/>
+
+        <ImageView
+            android:id="@+id/ivMyAccount_history"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_gravity="start"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/historial"/>
+
+        <Button
+            android:id="@+id/btnMyAccount_history"
+            android:layout_width="256dp"
+            android:layout_height="44dp"
+            android:layout_gravity="start|center_vertical"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="16dp"
+            android:text="@string/records"
+            android:textSize="14sp"
+            android:textColor="@color/mainAppColor"
+            android:textAlignment="textStart"
+            android:fontFamily="@font/lato_regular"
+            android:backgroundTint="@color/white"/>
+
+        <ImageView
+            android:id="@+id/ivMyAccount_trackPackage"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_gravity="start"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/rastreoenvios"/>
+
+        <Button
+            android:id="@+id/btnMyAccount_trackPackage"
+            android:layout_width="256dp"
+            android:layout_height="44dp"
+            android:layout_gravity="start|center_vertical"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="16dp"
+            android:text="@string/trackMyPackage"
+            android:textSize="14sp"
+            android:textColor="@color/mainAppColor"
+            android:textAlignment="textStart"
+            android:fontFamily="@font/lato_regular"
+            android:backgroundTint="@color/white"/>
+
+        <ImageView
+            android:id="@+id/ivMyAccount_carrier"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_gravity="start"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/transportista"/>
+
+        <Button
+            android:id="@+id/btnMyAccount_carrier"
+            android:layout_width="256dp"
+            android:layout_height="44dp"
+            android:layout_gravity="start|center_vertical"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="16dp"
+            android:text="@string/carrier"
+            android:textSize="14sp"
+            android:textColor="@color/mainAppColor"
+            android:textAlignment="textStart"
+            android:fontFamily="@font/lato_regular"
+            android:backgroundTint="@color/white"/>
+
+        <ImageView
+            android:id="@+id/ivMyAccount_settings"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_gravity="start"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ajustes"/>
+
+        <Button
+            android:id="@+id/btnMyAccount_settings"
+            android:layout_width="256dp"
+            android:layout_height="44dp"
+            android:layout_gravity="start|center_vertical"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="16dp"
+            android:text="@string/settings"
+            android:textSize="14sp"
+            android:textColor="@color/mainAppColor"
+            android:textAlignment="textStart"
+            android:fontFamily="@font/lato_regular"
+            android:backgroundTint="@color/white"/>
+
+    </GridLayout>
+
+    <GridLayout
+        android:id="@+id/glMyAccount_supportFeatures"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:columnCount="2"
+        android:rowCount="5">
+
+        <TextView
+            android:id="@+id/tvMainPage_support"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_gravity="start"
+            android:layout_columnSpan="2"
+            android:fontFamily="@font/lato_bold"
+            android:text="@string/support"
+            android:textColor="@color/mainTextColor"
+            android:textSize="18sp"/>
+
+        <ImageView
+            android:id="@+id/ivMyAccount_about"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_gravity="start"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/trackitlogo"/>
+
+        <Button
+            android:id="@+id/btnMyAccount_about"
+            android:layout_width="256dp"
+            android:layout_height="44dp"
+            android:layout_gravity="start|center_vertical"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="16dp"
+            android:text="@string/about"
+            android:textSize="14sp"
+            android:textColor="@color/mainAppColor"
+            android:textAlignment="textStart"
+            android:fontFamily="@font/lato_regular"
+            android:backgroundTint="@color/white"/>
+
+        <ImageView
+            android:id="@+id/ivMyAccount_faq"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_gravity="start"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/preguntasfrecuentes"/>
+
+        <Button
+            android:id="@+id/btnMyAccount_faq"
+            android:layout_width="256dp"
+            android:layout_height="44dp"
+            android:layout_gravity="start|center_vertical"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="16dp"
+            android:text="@string/faq"
+            android:textSize="14sp"
+            android:textColor="@color/mainAppColor"
+            android:textAlignment="textStart"
+            android:fontFamily="@font/lato_regular"
+            android:backgroundTint="@color/white"/>
+
+    </GridLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/glMyAccount_navButtons"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="-6dp"
+        android:gravity="bottom">
+
+        <ImageButton
+            android:id="@+id/ibMyAccount_myTrackings"
+            android:layout_width="215dp"
+            android:layout_height="96dp"
+            android:layout_marginLeft="-5dp"
+            android:layout_marginRight="-10dp"
+            android:src="@drawable/misrastreospurpura"
+            android:backgroundTint="@color/secondAppColor"/>
+
+        <ImageButton
+            android:id="@+id/ibMyAccount_myAccount"
+            android:layout_width="215dp"
+            android:layout_height="96dp"
+            android:layout_marginLeft="-5dp"
+            android:layout_marginEnd="-10dp"
+            android:layout_marginBottom="-10dp"
+            android:layout_toRightOf="@id/ibMyAccount_myTrackings"
+            android:backgroundTint="@color/mainAppColor"
+            android:src="@drawable/micuentablanco" />
+
+    </RelativeLayout>
+
+</LinearLayout>

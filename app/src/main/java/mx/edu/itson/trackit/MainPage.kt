@@ -21,14 +21,14 @@ class MainPage : AppCompatActivity() {
         var myTrackings: ImageButton = findViewById(R.id.ibMainPage_myTrackings)
 
         myTrackings.setOnClickListener(){
-            var intent: Intent = Intent(this , AddTrackingNumber::class.java)
+            var intent: Intent = Intent(this , MainPage::class.java)
             startActivity(intent)
         }
 
         var myAccount: ImageButton = findViewById(R.id.ibMainPage_myAccount)
 
         myAccount.setOnClickListener(){
-            var intent: Intent = Intent(this , AddTrackingNumber::class.java)
+            var intent: Intent = Intent(this , MyAccount::class.java)
             startActivity(intent)
         }
 

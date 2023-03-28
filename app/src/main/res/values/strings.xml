@@ -43,4 +43,17 @@
     <string name="qrStatus">QR Leído correctamente: #1264752</string>
     <string name="redoQRScan">Volver a escanear</string>
     <string name="confirmTracking">Confirmar rastreo</string>
+
+    <!--Mi cuenta-->
+    <string name="myAccount">Mi cuenta</string>
+    <string name="features">Características</string>
+    <string name="records">Historial</string>
+    <string name="trackMyPackage">Rastrear mi envío</string>
+    <string name="carrier">Transportista</string>
+    <string name="settings">Ajustes</string>
+    <string name="support">Soporte</string>
+    <string name="about">Acerca de nosotros</string>
+    <string name="faq">Preguntas frecuentes</string>
+
+
 </resources>

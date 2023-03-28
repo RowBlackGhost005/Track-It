@@ -24,5 +24,12 @@ class AddTrackingNumber : AppCompatActivity() {
             var intent: Intent = Intent(this , MainPage::class.java)
             startActivity(intent)
         }
+
+        var trackByQR: Button = findViewById(R.id.btnAddTrackingNumber_trackByQr)
+
+        trackByQR.setOnClickListener(){
+            var intent: Intent = Intent(this , ScanQRCode::class.java)
+            startActivity(intent)
+        }
     }
 }

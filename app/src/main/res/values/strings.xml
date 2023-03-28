@@ -37,4 +37,10 @@
     <string name="scanQrCode">Escanear QR de rastreo</string>
     <string name="trackByQr">Rastrear por QR</string>
     <string name="trackPackage">Rastrear envío</string>
+
+    <!--Escanear QR-->
+    <string name="scanQRCode">Escanear QR de rastreo</string>
+    <string name="qrStatus">QR Leído correctamente: #1264752</string>
+    <string name="redoQRScan">Volver a escanear</string>
+    <string name="confirmTracking">Confirmar rastreo</string>
 </resources>

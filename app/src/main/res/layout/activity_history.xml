@@ -20,7 +20,18 @@
     <ListView
         android:id="@+id/lvHistory"
         android:layout_width="match_parent"
-        android:layout_height="568dp"
+        android:layout_height="471dp"
         android:layout_marginTop="20dp" />
+
+    <Button
+        android:id="@+id/btnHistoryEliminar"
+        android:layout_width="match_parent"
+        android:layout_height="121dp"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="0dp"
+
+        android:color="@color/red"
+        android:text="Limpiar historial"
+        android:textSize="16sp" />
 
 </LinearLayout>

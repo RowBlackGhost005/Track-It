@@ -32,7 +32,7 @@
           android:fontFamily="@font/lato_black"
           android:text="@string/trackingObject"
           android:textColor="@color/mainTextColor"
-          android:textSize="18sp" />
+          android:textSize="16sp" />
 
       <ImageView
           android:id="@+id/ivDotsTrakingObject_Logo"
@@ -60,8 +60,8 @@
           android:layout_gravity="center"
           android:fontFamily="@font/lato_regular"
           android:text="@string/trackingObject"
-          android:textColor="@color/mainTextColor"
-          android:textSize="18sp" />
+          android:textColor="@color/secondTextColor"
+          android:textSize="13sp" />
 
       <View
           android:layout_width="0dp"
@@ -89,11 +89,11 @@
           android:layout_gravity="center"
           android:fontFamily="@font/lato_regular"
           android:text="@string/trackingObject"
-          android:textColor="@color/mainTextColor"
-          android:textSize="18sp" />
+          android:textColor="@color/secondTextColor"
+          android:textSize="13sp" />
 
       <View
-          android:layout_width="100dp"
+          android:layout_width="50dp"
           android:layout_height="0dp"
           />
 
@@ -104,8 +104,8 @@
           android:layout_gravity="center"
           android:fontFamily="@font/lato_regular"
           android:text="@string/trackingObject"
-          android:textColor="@color/mainTextColor"
-          android:textSize="18sp" />
+          android:textColor="@color/secondTextColor"
+          android:textSize="13sp" />
 
    </LinearLayout>
 

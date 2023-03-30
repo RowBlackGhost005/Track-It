@@ -21,7 +21,7 @@ class ScanQRCode : AppCompatActivity() {
         var btnReturnMainPage: Button = findViewById(R.id.btnScanQRCode_trackPackage)
 
         btnReturnMainPage.setOnClickListener(){
-            var intent: Intent = Intent(this , MainPage::class.java)
+            var intent: Intent = Intent(this , DeliveryStatus::class.java)
             startActivity(intent)
         }
 

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Frequently_asked">
+
+    <TextView
+        android:id="@+id/tvFrqAsked_titleScreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="@string/frqAsked"
+        android:textColor="@color/mainTextColor"
+        android:textSize="25dp"/>
+
+    <ExpandableListView
+        android:id="@+id/elvFrqAsk"
+        android:layout_width="match_parent"
+        android:layout_height="584dp" />
+
+
+    <RelativeLayout
+        android:id="@+id/glAboutUs_navButtons"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="-6dp"
+        android:gravity="bottom">
+
+        <ImageButton
+            android:id="@+id/ibFrqAsk_myTrackings"
+            android:layout_width="215dp"
+            android:layout_height="96dp"
+            android:layout_marginLeft="-5dp"
+            android:layout_marginRight="-10dp"
+            android:backgroundTint="@color/secondAppColor"
+            android:src="@drawable/misrastreospurpura" />
+
+        <ImageButton
+            android:id="@+id/ibFrqAsk_myAccount"
+            android:layout_width="215dp"
+            android:layout_height="96dp"
+            android:layout_marginLeft="-5dp"
+            android:layout_marginEnd="-10dp"
+            android:layout_marginBottom="-10dp"
+            android:layout_toRightOf="@id/ibFrqAsk_myTrackings"
+            android:backgroundTint="@color/secondAppColor"
+            android:src="@drawable/micuenta" />
+
+    </RelativeLayout>
+
+</LinearLayout>

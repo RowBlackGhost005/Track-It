@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".tracking_menu">
+
+
+    <ImageView
+        android:id="@+id/ivTrackingMenu_Logo"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_gravity="center"
+        android:layout_marginVertical="8dp"
+        android:src="@drawable/trackitlogo"/>
+
+    <TextView
+        android:id="@+id/tvTrackingMenu_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/montserrat_bolditalic"
+        android:text="@string/app_name"
+        android:textColor="@color/mainTextColor"
+        android:textSize="24sp"/>
+
+    <ListView
+        android:id="@+id/listViewTrackingMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="450dp" />
+
+    <Button
+        android:id="@+id/btnAddTracking_add"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginVertical="16dp"
+        android:gravity="center"
+        android:text="@string/trackingAdd"
+        android:textColor="@color/contrastTextColor"
+        android:fontFamily="@font/lato_bold"
+        android:textSize="10dp"
+        android:layout_gravity="center"/>
+
+    <RelativeLayout
+        android:id="@+id/glTrackingMenu_navButtons"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="-6dp"
+        android:gravity="bottom">
+
+        <ImageButton
+            android:id="@+id/ibTrackingMenu_myTrackings"
+            android:layout_width="215dp"
+            android:layout_height="96dp"
+            android:layout_marginLeft="-5dp"
+            android:layout_marginRight="-10dp"
+            android:backgroundTint="@color/mainAppColor"
+            android:src="@drawable/misrastreos" />
+
+        <ImageButton
+            android:id="@+id/ibTrackingMenu_myAccount"
+            android:layout_width="215dp"
+            android:layout_height="96dp"
+            android:layout_marginLeft="-5dp"
+            android:layout_marginEnd="-10dp"
+            android:layout_marginBottom="-10dp"
+            android:layout_toRightOf="@id/ibTrackingMenu_myTrackings"
+            android:backgroundTint="@color/secondAppColor"
+            android:src="@drawable/micuenta" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

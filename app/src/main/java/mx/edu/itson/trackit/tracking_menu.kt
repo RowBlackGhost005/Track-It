@@ -82,6 +82,11 @@ class tracking_menu : AppCompatActivity() {
             var inflador= LayoutInflater.from(contexto)
             var vista = inflador.inflate(R.layout.rastreo_view,null)
 
+            vista.setOnClickListener(){
+                    var intent: Intent = Intent(contexto , DeliveryStatus::class.java)
+                    contexto!!.startActivity(intent)
+            }
+
             var imagen= vista.findViewById(R.id.ivStatusTracking_Logo) as ImageView
             var codigoRastreo= vista.findViewById(R.id.tvTrackingMenu_title) as TextView
             var direccion= vista.findViewById(R.id.tvTrackingObject_adress) as TextView

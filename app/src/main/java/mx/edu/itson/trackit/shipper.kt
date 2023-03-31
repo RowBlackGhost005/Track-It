@@ -52,10 +52,8 @@ class shipper : AppCompatActivity() {
                 transportistas.add(Carrier("DHL México"))
                 transportistas.add(Carrier("Estafeta México"))
                 transportistas.add(Carrier("UPS México"))
-                transportistas.add(Carrier("UPS México"))
-                transportistas.add(Carrier("UPS México"))
-                transportistas.add(Carrier("UPS México"))
-                transportistas.add(Carrier("UPS México"))
+                transportistas.add(Carrier("Correos de México"))
+                transportistas.add(Carrier("Paquete Express"))
 
                 botonInternacional.setEnabled(true)
 

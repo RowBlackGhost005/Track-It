@@ -75,6 +75,15 @@
             android:textSize="20sp" />
     </LinearLayout>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="EN CAMINO"
+        android:layout_gravity="center"
+        android:fontFamily="@font/lato_bold"
+        android:textColor="@color/mainAppColor"
+        android:textSize="20sp" />
+
     <LinearLayout
         android:id="@+id/llDeliveryStatus_details_trayectory"
         android:layout_width="match_parent"

@@ -26,8 +26,9 @@ class DeliveryStatus : AppCompatActivity() {
             var intent: Intent = Intent(this, ScanQRCode::class.java)
             startActivity(intent)
         }
-
-        val bottomSheet: CoordinatorLayout = findViewById(R.id.delivery_status)
+    }
+        /**
+        val bottomSheet: ConstraintLayout = findViewById(R.id.delivery_status)
 
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
 
@@ -85,5 +86,5 @@ class DeliveryStatus : AppCompatActivity() {
         var layoutParams = bottomSheet.layoutParams
         layoutParams.height = WindowManager.LayoutParams.MATCH_PARENT
         bottomSheet.layoutParams = layoutParams
-    }
+    }**/
 }

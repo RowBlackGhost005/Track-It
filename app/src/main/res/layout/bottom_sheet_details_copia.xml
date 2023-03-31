@@ -1,51 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottomSheet"
+    android:layout_width="match_parent"
+    android:layout_height="680dp"
     android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".DeliveryStatus">
+    app:behavior_hideable="false"
+    app:behavior_peekHeight="@dimen/dimen_50"
 
-    <LinearLayout
-        android:id="@+id/llDeliveryStatus_header"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="8dp"
-        android:layout_marginTop="8dp"
-        android:orientation="horizontal">
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
-        <ImageButton
-            android:id="@+id/ibDeliveryStatus_back"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:scaleType="fitCenter"
-            android:backgroundTint="@color/secondAppColor"
-            android:src="@drawable/regresar" />
+    <!--Comment from Alec-->
 
-        <TextView
-            android:id="@+id/tvDeliveryStatus_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/lato_bold"
-            android:layout_marginEnd="64dp"
-            android:gravity="center"
-            android:text="@string/deliveryStatus"
-            android:textColor="@color/mainTextColor"
-            android:textSize="24sp" />
-    </LinearLayout>
-
-    <ImageView
-        android:id="@+id/ivMapStatus"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginTop="32dp"
-        android:src="@drawable/deliverstatus" />
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/cibDeliveryStatus_details"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/white"
+        android:src="@drawable/despliegue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/llDeliveryStatus_code"
@@ -80,7 +57,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/dimen_16"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/llDeliveryStatus_code">
@@ -93,12 +70,6 @@
             android:text="@string/tv_tray"
             android:textColor="@color/mainTextColor"
             android:textSize="20sp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="* Ciudad De México -> Ciudad Obregón"
-            android:textColor="@color/mainTextColor"
-            android:textSize="20sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -106,7 +77,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/dimen_16"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/llDeliveryStatus_details_trayectory">
@@ -119,28 +90,6 @@
             android:text="@string/tv_destiny"
             android:textColor="@color/mainTextColor"
             android:textSize="20sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="* 20:25 - Los Mochis - Sinaloa"
-            android:textColor="@color/mainTextColor"
-            android:textSize="20sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="* 15:30 - Ciudad de México"
-            android:textColor="@color/mainTextColor"
-            android:textSize="20sp" />
-
     </LinearLayout>
-
-</LinearLayout>
-
-
-    <!--
-    <include layout="@layout/bottom_sheet_details"/>
-    -->
-
-</LinearLayout>
+-->
+</androidx.constraintlayout.widget.ConstraintLayout>

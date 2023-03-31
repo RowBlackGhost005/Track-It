@@ -12,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/montserrat_bold"
         android:text="@string/history"
         android:textColor="@color/mainTextColor"
@@ -20,18 +21,28 @@
     <ListView
         android:id="@+id/lvHistory"
         android:layout_width="match_parent"
-        android:layout_height="471dp"
+        android:layout_height="550dp"
         android:layout_marginTop="20dp" />
 
-    <Button
-        android:id="@+id/btnHistoryEliminar"
+    <RelativeLayout
+        android:id="@+id/glMainPage_navButtons"
         android:layout_width="match_parent"
-        android:layout_height="121dp"
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="-6dp"
+        android:gravity="bottom">
 
-        android:color="@color/red"
-        android:text="Limpiar historial"
-        android:textSize="16sp" />
+        <Button
+            android:id="@+id/btnHistoryEliminar"
+            android:layout_width="match_parent"
+            android:layout_height="121dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="0dp"
+            android:color="@color/red"
+            android:text="Limpiar historial"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+
+
 
 </LinearLayout>

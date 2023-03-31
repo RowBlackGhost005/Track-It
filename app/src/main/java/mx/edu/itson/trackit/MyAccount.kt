@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 
 class MyAccount : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,6 +15,12 @@ class MyAccount : AppCompatActivity() {
         val btnHistory: Button = findViewById(R.id.btnMyAccount_history)
         val btnFaq: Button = findViewById(R.id.btnMyAccount_faq)
         val btnCarrier: Button = findViewById(R.id.btnMyAccount_carrier)
+        val btnTrackings: ImageButton = findViewById(R.id.ibMyAccount_myTrackings)
+
+        btnTrackings.setOnClickListener{
+            var intent: Intent = Intent(this , MainPage::class.java)
+            startActivity(intent)
+        }
 
         btnCarrier.setOnClickListener{
             var intent: Intent = Intent(this , shipper::class.java)

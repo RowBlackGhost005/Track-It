@@ -9,11 +9,12 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 
 class DeliveryStatus : AppCompatActivity() {
 
-    private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
+    private lateinit var bottomSheetBehavior: BottomSheetBehavior<CoordinatorLayout>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +27,7 @@ class DeliveryStatus : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val bottomSheet: ConstraintLayout = findViewById(R.id.delivery_status)
+        val bottomSheet: CoordinatorLayout = findViewById(R.id.delivery_status)
 
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
 

@@ -25,6 +25,8 @@ class DeliveryStatus : AppCompatActivity() {
             var intent: Intent = Intent(this, ScanQRCode::class.java)
             startActivity(intent)
         }
+    }
+        /**
         val bottomSheet: ConstraintLayout = findViewById(R.id.delivery_status)
 
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)

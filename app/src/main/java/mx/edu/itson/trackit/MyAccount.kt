@@ -18,6 +18,12 @@ class MyAccount : AppCompatActivity() {
         val btnTrackings: Button = findViewById(R.id.btnMyAccount_trackPackage)
         val btnSettings: Button = findViewById(R.id.btnMyAccount_settings)
         val btnMyAccountSettings: ImageButton = findViewById(R.id.ibMyAccount_myAccountSettings)
+        val btnMiTrackings: ImageButton = findViewById(R.id.ibMyAccount_myTrackings)
+
+        btnMiTrackings.setOnClickListener(){
+            var intent: Intent = Intent(this , MainPage::class.java)
+            startActivity(intent)
+        }
 
         btnMyAccountSettings.setOnClickListener{
             var intent: Intent = Intent(this , MyAccountSettings::class.java)

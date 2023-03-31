@@ -28,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:layout_marginEnd="64dp"
+            android:layout_marginEnd="72dp"
             android:gravity="center"
             android:fontFamily="@font/lato_bold"
             android:text="@string/myAccount"
@@ -37,15 +37,36 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/llMyAccountSettings_picandlogout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal">
 
-    <ImageButton
-        android:id="@+id/ibMyAccountSettings_profilePic"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:layout_gravity="center"
-        android:scaleType="centerCrop"
-        android:src="@drawable/agregarimagen"
-        android:backgroundTint="@android:color/transparent"/>
+        <ImageButton
+            android:id="@+id/ibMyAccountSettings_profilePic"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_marginStart="112dp"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            android:src="@drawable/agregarimagen"
+            android:backgroundTint="@android:color/transparent"/>
+
+        <ImageButton
+            android:id="@+id/ibMyAccountSettings_logout"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            android:src="@drawable/salircuenta"
+            android:backgroundTint="@android:color/transparent"/>
+    </LinearLayout>
+
+
+
 
     <TextView
         android:id="@+id/tvMyAccountSettings_userName"

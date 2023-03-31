@@ -57,21 +57,12 @@
           android:textColor="@color/secondTextColor"
           android:textSize="13sp" />
 
-      <View
-          android:layout_width="0dp"
-          android:layout_height="0dp"
-          />
 
-      <View
-          android:layout_width="0dp"
-          android:layout_height="0dp"
-          />
    </LinearLayout>
 
    <LinearLayout
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-
        android:orientation="horizontal"
        android:paddingLeft="15dp"
        android:paddingRight="15dp"
@@ -93,7 +84,7 @@
        android:orientation="horizontal"
        android:paddingLeft="15dp"
        android:paddingRight="15dp"
-       android:layout_marginTop="5dp"
+       android:layout_marginTop="10dp"
        >
 
       <TextView

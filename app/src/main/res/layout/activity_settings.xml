@@ -31,7 +31,7 @@
             android:layout_gravity="left"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/lato_regular"
-            android:text="@string/trackingObject"
+            android:text="Modo obscuro desactivado"
             android:textColor="@color/secondTextColor"
             android:textSize="20sp" />
 
@@ -70,7 +70,7 @@
         android:layout_gravity="left"
         android:layout_marginTop="5dp"
         android:fontFamily="@font/lato_regular"
-        android:text="@string/trackingObject"
+        android:text="Version de la aplicacion:  v0.0.1"
         android:textColor="@color/secondTextColor"
         android:textSize="20sp" />
 

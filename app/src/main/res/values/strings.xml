@@ -44,6 +44,14 @@
     <string name="redoQRScan">Volver a escanear</string>
     <string name="confirmTracking">Confirmar rastreo</string>
 
+    <!--Estatus de entrega-->
+    <string name="deliveryStatus">Estado de entrega</string>
+    <string name="tv_description">018894114734 - Código de rastreo</string>
+    <string name="tv_tray">Trayectoria</string>
+    <string name="tv_destiny">Destino</string>
+
+
+
     <!--Mi cuenta-->
     <string name="myAccount">Mi cuenta</string>
     <string name="features">Características</string>
@@ -54,6 +62,31 @@
     <string name="support">Soporte</string>
     <string name="about">Acerca de nosotros</string>
     <string name="faq">Preguntas frecuentes</string>
+
+    <!--Menu con rastreos-->
+    <string name="trackingAdd">Añadir otro código de rastreo</string>
+    <string name="trackingObject">Texto de ejemplo</string>
+
+    <!--Acerca de-->
+    <string name="aboutUsTitle">ACERCA DE</string>
+    <string name="aboutUsText">
+        Track It! Ofrece el mejor servicio de seguimiento de paquetes TODO EN UNO. La aplicación cuenta
+        con muchos usuarios alrededor del mundo que aprovechan al máximo las capacidades de Track It!
+        para rastrear sus paquetes. Identificamos los números de rastreo de diferentes países y servicios
+        postales,ya no es necesario gastar tiempo para ir de un sitio web a otro, solo con introducir el código
+        de rastreo y obtendrás toda la información sobre el tránsito de su paquete.
+
+    </string>
+
+    <!-- transportista-->
+    <string name="carrierNational">Correo nacional</string>
+    <string name="carrierInternational">Correo internacional</string>
+
+    <!-- historial-->
+    <string name="history">HISTORIAL</string>
+
+    <!-- preguntas frecuentes-->
+    <string name="frqAsked">PREGUNTAS FRECUENTES</string>
 
 
 </resources>

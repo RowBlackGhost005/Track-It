@@ -52,7 +52,7 @@
             android:layout_marginBottom="-10dp"
             android:text="@string/carrierInternational"
             android:layout_toRightOf="@id/btnShipper_National"
-            android:backgroundTint="@color/mainTextColor"
+            android:backgroundTint="@color/secondAppColor"
              />
 
     </RelativeLayout>

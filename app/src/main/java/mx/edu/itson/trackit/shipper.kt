@@ -57,8 +57,8 @@ class shipper : AppCompatActivity() {
 
                 botonInternacional.setEnabled(true)
 
-                botonNacional.setBackgroundColor(getResources().getColor(R.color.purple_200))
-                botonInternacional.setBackgroundColor(getResources().getColor(R.color.mainTextColor))
+                botonNacional.setBackgroundColor(getResources().getColor(R.color.mainAppColor))
+                botonInternacional.setBackgroundColor(getResources().getColor(R.color.secondAppColor))
 
                 botonNacional.setEnabled(false)
             }
@@ -73,8 +73,8 @@ class shipper : AppCompatActivity() {
 
                 botonNacional.setEnabled(true)
 
-                botonNacional.setBackgroundColor(getResources().getColor(R.color.mainTextColor))
-                botonInternacional.setBackgroundColor(getResources().getColor(R.color.purple_200))
+                botonNacional.setBackgroundColor(getResources().getColor(R.color.secondAppColor))
+                botonInternacional.setBackgroundColor(getResources().getColor(R.color.mainAppColor))
 
                 botonInternacional.setEnabled(false)
             }
@@ -90,8 +90,8 @@ class shipper : AppCompatActivity() {
 
                 botonInternacional.setEnabled(true)
 
-                botonNacional.setBackgroundColor(getResources().getColor(R.color.purple_200))
-                botonInternacional.setBackgroundColor(getResources().getColor(R.color.mainTextColor))
+                botonNacional.setBackgroundColor(getResources().getColor(R.color.mainAppColor))
+                botonInternacional.setBackgroundColor(getResources().getColor(R.color.secondAppColor))
 
                 botonNacional.setEnabled(false)
             }

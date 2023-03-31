@@ -21,7 +21,7 @@ class MainPage : AppCompatActivity() {
         var myTrackings: ImageButton = findViewById(R.id.ibMainPage_myTrackings)
 
         myTrackings.setOnClickListener(){
-            var intent: Intent = Intent(this , MainPage::class.java)
+            var intent: Intent = Intent(this , tracking_menu::class.java)
             startActivity(intent)
         }
 

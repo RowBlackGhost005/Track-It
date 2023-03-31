@@ -87,5 +87,7 @@
     <!-- preguntas frecuentes-->
     <string name="frqAsked">PREGUNTAS FRECUENTES</string>
 
+    <!-- Configuración de cuenta-->
+    <string name="editAccount">Editar Perfil</string>
 
 </resources>

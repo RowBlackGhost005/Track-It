@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MyAccountSettings">
+
+    <LinearLayout
+        android:id="@+id/llMyAccountSettings_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/ibMyAccountSettings_back"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:scaleType="fitCenter"
+            android:backgroundTint="@color/secondAppColor"
+            android:src="@drawable/regresar"/>
+
+        <TextView
+            android:id="@+id/tvMyAccountSettings_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginEnd="64dp"
+            android:gravity="center"
+            android:fontFamily="@font/lato_bold"
+            android:text="@string/myAccount"
+            android:textColor="@color/mainTextColor"
+            android:textSize="24sp"/>
+
+    </LinearLayout>
+
+
+    <ImageButton
+        android:id="@+id/ibMyAccountSettings_profilePic"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_gravity="center"
+        android:scaleType="centerCrop"
+        android:src="@drawable/agregarimagen"
+        android:backgroundTint="@android:color/transparent"/>
+
+    <TextView
+        android:id="@+id/tvMyAccountSettings_userName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:fontFamily="@font/lato_bold"
+        android:text="Paul A León"
+        android:textColor="@color/mainTextColor"
+        android:textSize="24sp"/>
+
+    <EditText
+        android:id="@+id/etMyAccountSettings_fullName"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="4dp"
+        android:layout_gravity="center"
+        android:ems="24"
+        android:inputType="text"
+        android:text="Paul Alberto León"
+        android:textSize="16sp"
+        android:fontFamily="@font/lato_regular"
+        android:textColorHint="@color/secondTextColor"
+        android:textColor="@color/secondTextColor" />
+
+    <EditText
+        android:id="@+id/etMyAccountSettings_email"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="4dp"
+        android:layout_gravity="center"
+        android:ems="24"
+        android:inputType="text"
+        android:text="paul.leon@gmail.com"
+        android:textSize="16sp"
+        android:fontFamily="@font/lato_regular"
+        android:textColorHint="@color/secondTextColor"
+        android:textColor="@color/secondTextColor" />
+
+    <EditText
+        android:id="@+id/etMyAccountSettings_phone"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="4dp"
+        android:layout_gravity="center"
+        android:ems="24"
+        android:inputType="text"
+        android:text="644 153 1464"
+        android:textSize="16sp"
+        android:fontFamily="@font/lato_regular"
+        android:textColorHint="@color/secondTextColor"
+        android:textColor="@color/secondTextColor" />
+
+
+    <Button
+        android:id="@+id/btnMyAccountSettings_editAccount"
+        android:layout_width="196dp"
+        android:layout_height="55dp"
+        android:layout_marginVertical="16dp"
+        android:gravity="center"
+        android:text="@string/editAccount"
+        android:textColor="@color/contrastTextColor"
+        android:fontFamily="@font/lato_bold"
+        android:layout_gravity="center"/>
+
+
+    <RelativeLayout
+        android:id="@+id/glMyAccount_navButtons"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="-6dp"
+        android:gravity="bottom">
+
+        <ImageButton
+            android:id="@+id/ibMyAccount_myTrackings"
+            android:layout_width="215dp"
+            android:layout_height="96dp"
+            android:layout_marginLeft="-5dp"
+            android:layout_marginRight="-10dp"
+            android:src="@drawable/misrastreospurpura"
+            android:backgroundTint="@color/secondAppColor"/>
+
+        <ImageButton
+            android:id="@+id/ibMyAccount_myAccount"
+            android:layout_width="215dp"
+            android:layout_height="96dp"
+            android:layout_marginLeft="-5dp"
+            android:layout_marginEnd="-10dp"
+            android:layout_marginBottom="-10dp"
+            android:layout_toRightOf="@id/ibMyAccount_myTrackings"
+            android:backgroundTint="@color/mainAppColor"
+            android:src="@drawable/micuentablanco" />
+
+    </RelativeLayout>
+
+</LinearLayout>

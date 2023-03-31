@@ -16,6 +16,12 @@ class MyAccount : AppCompatActivity() {
         val btnFaq: Button = findViewById(R.id.btnMyAccount_faq)
         val btnCarrier: Button = findViewById(R.id.btnMyAccount_carrier)
         val btnTrackings: ImageButton = findViewById(R.id.ibMyAccount_myTrackings)
+        val btnSettings: Button = findViewById(R.id.btnMyAccount_settings)
+
+        btnSettings.setOnClickListener{
+            var intent: Intent = Intent(this , settings::class.java)
+            startActivity(intent)
+        }
 
         btnTrackings.setOnClickListener{
             var intent: Intent = Intent(this , MainPage::class.java)
@@ -24,6 +30,7 @@ class MyAccount : AppCompatActivity() {
 
         btnCarrier.setOnClickListener{
             var intent: Intent = Intent(this , shipper::class.java)
+            intent.putExtra("tipo","nacional")
             startActivity(intent)
         }
 

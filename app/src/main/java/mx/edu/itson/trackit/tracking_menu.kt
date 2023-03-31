@@ -1,15 +1,13 @@
 package mx.edu.itson.trackit
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
-import android.widget.ImageView
-import android.widget.ListView
-import android.widget.TextView
+import android.widget.*
 
 class tracking_menu : AppCompatActivity() {
 
@@ -17,6 +15,27 @@ class tracking_menu : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tracking_menu)
+
+        var myTrackings: ImageButton = findViewById(R.id.ibTrackingMenu_myTrackings)
+
+        myTrackings.setOnClickListener(){
+            var intent: Intent = Intent(this , tracking_menu::class.java)
+            startActivity(intent)
+        }
+
+        var myAccount: ImageButton = findViewById(R.id.ibTrackingMenu_myAccount)
+
+        myAccount.setOnClickListener(){
+            var intent: Intent = Intent(this , MyAccount::class.java)
+            startActivity(intent)
+        }
+
+        var btnAniadirCodigo: Button = findViewById(R.id.btnAddTracking_add)
+
+        btnAniadirCodigo.setOnClickListener(){
+            var intent: Intent = Intent(this , AddTrackingNumber::class.java)
+            startActivity(intent)
+        }
 
         agregarRastreos()
 

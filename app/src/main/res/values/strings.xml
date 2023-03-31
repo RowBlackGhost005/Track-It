@@ -51,7 +51,6 @@
     <string name="tv_destiny">Destino</string>
 
 
-
     <!--Mi cuenta-->
     <string name="myAccount">Mi cuenta</string>
     <string name="features">Características</string>
@@ -87,7 +86,6 @@
 
     <!-- preguntas frecuentes-->
     <string name="frqAsked">PREGUNTAS FRECUENTES</string>
-
 
 
 </resources>

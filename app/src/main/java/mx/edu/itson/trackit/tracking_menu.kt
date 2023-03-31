@@ -47,10 +47,12 @@ class tracking_menu : AppCompatActivity() {
     }
 
     fun agregarRastreos(){
-        rastreos.add(Tracking("codigo: 508462549845R","Guerrero 251","Entregado el 12/12/12",
-            "enviado por dhl",R.drawable.transportista))
-        rastreos.add(Tracking("codigo: 508462549845R","Guerrero 251","Entregado el 12/12/12",
-            "enviado por dhl",R.drawable.transportista))
+        rastreos.add(Tracking("codigo: 508462549845R","Guerrero 251","En camino 5 dias",
+            "Enviado por Estafeta",R.drawable.transportista))
+        rastreos.add(Tracking("codigo: 508462549845E","Guerrero 251","En espera",
+            "Enviado por UPS",R.drawable.enespera))
+        rastreos.add(Tracking("codigo: 508462549845F","Guerrero 251","Entregado el 12/12/12",
+            "Enviado por UPS",R.drawable.entregado))
     }
 
     private class AdaptadorRastreos: BaseAdapter {

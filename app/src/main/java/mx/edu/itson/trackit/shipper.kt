@@ -19,23 +19,25 @@ class shipper : AppCompatActivity() {
 
         var botonNacional: Button = findViewById(R.id.btnShipper_National)
         var botonInternacional: Button = findViewById(R.id.btnShipper_International)
+        var listView: ListView =findViewById(R.id.lvCarrier) as ListView
 
         botonNacional.setOnClickListener{
-            var intent: Intent = Intent(this,shipper::class.java)
-            intent.putExtra("tipo","nacional")
-            startActivity(intent)
+            transportistas.clear()
+            agregarTransportistas("nacional")
+            listView.invalidateViews();
+
         }
 
         botonInternacional.setOnClickListener{
-            var intent: Intent = Intent(this,shipper::class.java)
-            intent.putExtra("tipo","internacional")
-            startActivity(intent)
+            transportistas.clear()
+            agregarTransportistas("internacional")
+            listView.invalidateViews();
+
         }
 
         var optionTipo: String? = intent.getStringExtra("tipo")
         agregarTransportistas(optionTipo)
 
-        var listView: ListView =findViewById(R.id.lvCarrier) as ListView
         var adaptador:AdaptadorTransportistas= AdaptadorTransportistas(this,transportistas)
         listView.adapter=adaptador
     }
@@ -55,19 +57,28 @@ class shipper : AppCompatActivity() {
                 transportistas.add(Carrier("UPS México"))
                 transportistas.add(Carrier("UPS México"))
 
-                botonNacional.setBackgroundColor(getResources().getColor(R.color.purple_500))
-                botonInternacional.setBackgroundColor(getResources().getColor(R.color.purple_200))
+                botonInternacional.setEnabled(true)
+
+                botonNacional.setBackgroundColor(getResources().getColor(R.color.purple_200))
+                botonInternacional.setBackgroundColor(getResources().getColor(R.color.mainTextColor))
+
+                botonNacional.setEnabled(false)
             }
 
             "internacional" -> {
-                transportistas.add(Carrier("ejemplos"))
-                transportistas.add(Carrier("ejemplos"))
-                transportistas.add(Carrier("ejemplos"))
-                transportistas.add(Carrier("ejemplos"))
-                transportistas.add(Carrier("ejemplos"))
+                transportistas.add(Carrier("DHL"))
+                transportistas.add(Carrier("Estafeta"))
+                transportistas.add(Carrier("UPS"))
+                transportistas.add(Carrier("FedEx"))
+                transportistas.add(Carrier("Mercado Envíos"))
+                transportistas.add(Carrier("Amazon Prime"))
 
-                botonNacional.setBackgroundColor(getResources().getColor(R.color.purple_200))
-                botonInternacional.setBackgroundColor(getResources().getColor(R.color.purple_500))
+                botonNacional.setEnabled(true)
+
+                botonNacional.setBackgroundColor(getResources().getColor(R.color.mainTextColor))
+                botonInternacional.setBackgroundColor(getResources().getColor(R.color.purple_200))
+
+                botonInternacional.setEnabled(false)
             }
 
             else -> {
@@ -79,8 +90,12 @@ class shipper : AppCompatActivity() {
                 transportistas.add(Carrier("UPS México"))
                 transportistas.add(Carrier("UPS México"))
 
-                botonNacional.setBackgroundColor(getResources().getColor(R.color.purple_500))
-                botonInternacional.setBackgroundColor(getResources().getColor(R.color.purple_200))
+                botonInternacional.setEnabled(true)
+
+                botonNacional.setBackgroundColor(getResources().getColor(R.color.purple_200))
+                botonInternacional.setBackgroundColor(getResources().getColor(R.color.mainTextColor))
+
+                botonNacional.setEnabled(false)
             }
         }
 

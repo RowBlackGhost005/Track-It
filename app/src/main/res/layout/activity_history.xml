@@ -22,7 +22,10 @@
         android:id="@+id/lvHistory"
         android:layout_width="match_parent"
         android:layout_height="550dp"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="20dp"
+        android:divider="@null"
+        android:dividerHeight="7dp"
+        />
 
     <RelativeLayout
         android:id="@+id/glMainPage_navButtons"

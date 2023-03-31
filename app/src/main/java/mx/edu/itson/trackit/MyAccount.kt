@@ -15,7 +15,7 @@ class MyAccount : AppCompatActivity() {
         val btnHistory: Button = findViewById(R.id.btnMyAccount_history)
         val btnFaq: Button = findViewById(R.id.btnMyAccount_faq)
         val btnCarrier: Button = findViewById(R.id.btnMyAccount_carrier)
-        val btnTrackings: ImageButton = findViewById(R.id.ibMyAccount_myTrackings)
+        val btnTrackings: Button = findViewById(R.id.btnMyAccount_trackPackage)
         val btnSettings: Button = findViewById(R.id.btnMyAccount_settings)
 
         btnSettings.setOnClickListener{
@@ -24,7 +24,7 @@ class MyAccount : AppCompatActivity() {
         }
 
         btnTrackings.setOnClickListener{
-            var intent: Intent = Intent(this , MainPage::class.java)
+            var intent: Intent = Intent(this , AddTrackingNumber::class.java)
             startActivity(intent)
         }
 

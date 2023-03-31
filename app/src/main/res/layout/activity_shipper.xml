@@ -21,7 +21,10 @@
         android:id="@+id/lvCarrier"
         android:layout_width="match_parent"
         android:layout_height="473dp"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="20dp"
+        android:divider="@null"
+        android:dividerHeight="7dp"
+        />
 
     <RelativeLayout
         android:id="@+id/glShipper_navButtons"
@@ -49,7 +52,7 @@
             android:layout_marginBottom="-10dp"
             android:text="@string/carrierInternational"
             android:layout_toRightOf="@id/btnShipper_National"
-            android:backgroundTint="@color/mainAppColor"
+            android:backgroundTint="@color/mainTextColor"
              />
 
     </RelativeLayout>

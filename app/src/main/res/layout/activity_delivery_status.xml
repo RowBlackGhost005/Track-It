@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/delivery_status"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DeliveryStatus">
@@ -20,28 +20,113 @@
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:backgroundTint="@color/secondAppColor"
-            android:src="@drawable/regresar"/>
+            android:src="@drawable/regresar" />
 
         <TextView
             android:id="@+id/tvDeliveryStatus_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:gravity="center"
             android:fontFamily="@font/lato_bold"
+            android:gravity="center"
             android:text="@string/deliveryStatus"
             android:textColor="@color/mainTextColor"
-            android:textSize="24sp"/>
+            android:textSize="24sp" />
     </LinearLayout>
 
     <ImageView
         android:id="@+id/ivMapStatus"
         android:layout_width="match_parent"
-        android:layout_height="600dp"
+        android:layout_height="300dp"
         android:layout_marginTop="@dimen/dimen_60"
-        android:src="@drawable/deliverstatus"/>
+        android:src="@drawable/deliverstatus" />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <include
-        layout="@layout/bottom_sheet_details"/>
+    <ImageButton
+        android:id="@+id/ibDeliveryStatus_detailsDelivery"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:backgroundTint="@color/secondAppColor"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/despliegue"
+        android:layout_gravity="bottom|center"/>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <LinearLayout
+        android:id="@+id/llDeliveryStatus_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_16"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cibDeliveryStatus_details">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivStatus"
+            android:layout_width="@dimen/dimen_100"
+            android:layout_height="@dimen/dimen_50"
+            android:layout_margin="20dp"
+            android:src="@drawable/transportista" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/lato_bold"
+            android:text="@string/tv_description"
+            android:textColor="@color/mainTextColor"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llDeliveryStatus_details_trayectory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_16"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llDeliveryStatus_code">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/lato_bold"
+            android:text="@string/tv_tray"
+            android:textColor="@color/mainTextColor"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llDeliveryStatus_details_destiny"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_16"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llDeliveryStatus_details_trayectory">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/lato_bold"
+            android:text="@string/tv_destiny"
+            android:textColor="@color/mainTextColor"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+</LinearLayout>
+
+
+    <!--
+    <include layout="@layout/bottom_sheet_details"/>
+    -->
+
+</LinearLayout>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "703042787962",
+    "project_id": "trackit-bf909",
+    "storage_bucket": "trackit-bf909.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:703042787962:android:a757f4ff1c1ff32f6039c3",
+        "android_client_info": {
+          "package_name": "mx.edu.itson.trackit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "703042787962-f36kigsmjhb7qsqc7f7b1v8g9r25ceff.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwrCW7I-0wOagLzi2n7j2xaUY5SbkZq9c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "703042787962-f36kigsmjhb7qsqc7f7b1v8g9r25ceff.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

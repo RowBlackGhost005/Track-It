@@ -29,6 +29,8 @@ class DeliveryStatus : AppCompatActivity() {
         /**
         val bottomSheet: ConstraintLayout = findViewById(R.id.delivery_status)
 
+        val bottomSheet: ConstraintLayout = findViewById(R.id.delivery_status)
+
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
 
         bottomSheetBehavior.addBottomSheetCallback(object :

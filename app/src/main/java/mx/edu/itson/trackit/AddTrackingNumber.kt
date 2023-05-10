@@ -1,12 +1,12 @@
 package mx.edu.itson.trackit
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.QueryDocumentSnapshot
@@ -69,10 +69,6 @@ class AddTrackingNumber : AppCompatActivity() {
         val firestoreDatabase = Firebase.firestore
         val enviosRef = firestoreDatabase.collection("envios")
 
-        if (envio != null) {
-            enviosRef.add(envio)
-        }
-
         //agrega el track id a la listas del usuario
         val user = Firebase.auth.currentUser
 
@@ -82,7 +78,21 @@ class AddTrackingNumber : AppCompatActivity() {
 
                 val usuario: Usuario = documentos.toObject(Usuario::class.java)
 
-                actualizarUsuario(usuario,documentos.id.toString(),envio?.TrackId.toString())
+                if(!usuario.parcels.contains(envio?.TrackId.toString())){
+
+                    if (envio != null) {
+                        enviosRef.add(envio)
+                    }
+
+                    actualizarUsuario(usuario,documentos.id.toString(),envio?.TrackId.toString())
+                }else{
+                    val toast =
+                        Toast.makeText(applicationContext, "Envio ya esta registrado en la cuenta", Toast.LENGTH_SHORT)
+                    toast.setMargin(50f, 50f)
+                    toast.show()
+                }
+
+
 
             }
 

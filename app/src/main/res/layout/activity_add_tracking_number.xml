@@ -19,6 +19,7 @@
             android:id="@+id/ibAddTrackingNumber_back"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
+            android:scaleType="fitCenter"
             android:backgroundTint="@color/secondAppColor"
             android:src="@drawable/regresar"/>
 

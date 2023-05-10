@@ -12,16 +12,12 @@
         android:gravity="left"
         android:text="example"
         android:fontFamily="@font/lato_regular"
-        android:textSize="25sp"
-        android:textColor="@color/mainTextColor"
+        android:textSize="16sp"
+        android:textColor="@color/secondTextColor"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
         />
 
-    <View
-        android:layout_width="370dp"
-        android:layout_height="5dp"
-        android:layout_gravity="center"
-        android:background="@android:color/darker_gray" />
+
 
 </LinearLayout>

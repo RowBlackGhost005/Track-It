@@ -18,13 +18,14 @@
         android:textColor="@color/mainTextColor"
         android:textSize="24sp"/>
 
-    <ImageView
-        android:id="@+id/ivMyAccount_addImage"
+    <ImageButton
+        android:id="@+id/ibMyAccount_myAccountSettings"
         android:layout_width="160dp"
         android:layout_height="160dp"
         android:layout_gravity="center"
-        android:layout_marginVertical="8dp"
-        android:src="@drawable/agregarimagen"/>
+        android:scaleType="centerCrop"
+        android:src="@drawable/agregarimagen"
+        android:backgroundTint="@android:color/transparent"/>
 
     <GridLayout
         android:id="@+id/glMyAccount_features"

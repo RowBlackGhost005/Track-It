@@ -29,7 +29,10 @@
     <ListView
         android:id="@+id/listViewTrackingMenu"
         android:layout_width="wrap_content"
-        android:layout_height="450dp" />
+        android:layout_height="350dp"
+        android:divider="@null"
+        android:dividerHeight="5dp"
+        />
 
     <Button
         android:id="@+id/btnAddTracking_add"

@@ -14,5 +14,6 @@
     <color name="secondAppColor">#E3E6FD</color>
     <color name="secondTextColor">#B1B1B1</color>
     <color name="contrastTextColor">#FFFEFC</color>
-
+    <color name="red">#FF0000</color>
+    <color name="green">#94E1BB</color>
 </resources>

@@ -70,13 +70,14 @@
         android:textColor="@color/secondTextColor"/>
 
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnMain_login"
         android:layout_width="196dp"
         android:layout_height="55dp"
         android:layout_marginVertical="16dp"
         android:gravity="center"
         android:text="@string/login"
+        android:backgroundTint="@color/mainAppColor"
         android:textColor="@color/contrastTextColor"
         android:fontFamily="@font/lato_bold"
         android:layout_gravity="center"/>

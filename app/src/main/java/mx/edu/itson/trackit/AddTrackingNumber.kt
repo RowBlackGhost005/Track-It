@@ -3,8 +3,13 @@ package mx.edu.itson.trackit
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageButton
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import mx.edu.itson.trackit.data.Envio
 
 class AddTrackingNumber : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,6 +19,9 @@ class AddTrackingNumber : AppCompatActivity() {
         var btnTrackPackage: Button = findViewById(R.id.btnAddTrackingNumber_trackPackage)
 
         btnTrackPackage.setOnClickListener(){
+
+            consultaEnvios()
+
             var intent: Intent = Intent(this , MainPage::class.java)
             startActivity(intent)
         }
@@ -32,4 +40,43 @@ class AddTrackingNumber : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
+
+    //consulta los envio por id
+    fun consultaEnvios() {
+
+        var etTrack : EditText = findViewById(R.id.etAddTrackingNumber_trackingNumber)
+
+        val firestoreDatabase = Firebase.firestore
+        val enviosRef = firestoreDatabase.collection("envios").document(etTrack.text.toString())
+
+        enviosRef.get()
+            .addOnSuccessListener { document ->
+                if (document != null) {
+                    val envio: Envio? = document.toObject(Envio::class.java)
+
+                    guardaEnvio(envio)
+
+                    Log.d("DB", "DocumentSnapshot data: ${document.data}")
+                } else {
+                    Log.d("DB", "No such document")
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.d("DB", "get failed with ", exception)
+            }
+
+    }
+
+    fun guardaEnvio(envio: Envio?) {
+
+        val firestoreDatabase = Firebase.firestore
+        val enviosRef = firestoreDatabase.collection("envios")
+
+        if (envio != null) {
+            enviosRef.add(envio)
+        }
+
+    }
+
 }

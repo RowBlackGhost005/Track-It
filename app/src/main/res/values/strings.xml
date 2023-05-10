@@ -91,5 +91,7 @@
 
     <!-- Configuración de cuenta-->
     <string name="editAccount">Editar Perfil</string>
+    <string name="deleteAccount">Eliminar Cuenta</string>
+    <string name="confirmChanges">Actualizar Cuenta</string>
 
 </resources>

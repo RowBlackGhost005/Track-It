@@ -4,9 +4,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.auth.User
@@ -61,7 +63,76 @@ class MyAccountSettings : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.btnMyAccountSettingsEditAccount.setOnClickListener{
+            binding.btnMyAccountSettingsConfirmChanges.visibility = View.VISIBLE
+            binding.btnMyAccountSettingsDeleteAccount.visibility = View.VISIBLE
+            binding.btnMyAccountSettingsEditAccount.visibility = View.GONE
+            binding.etMyAccountSettingsUserName.visibility = View.VISIBLE
+            binding.etMyAccountSettingsUserName.isEnabled = true
+            binding.etMyAccountSettingsFullName.isEnabled = true
+            binding.etMyAccountSettingsEmail.isEnabled = true
+        }
 
+        binding.btnMyAccountSettingsConfirmChanges.setOnClickListener{
+            binding.btnMyAccountSettingsConfirmChanges.visibility = View.GONE
+            binding.btnMyAccountSettingsDeleteAccount.visibility = View.GONE
+            binding.etMyAccountSettingsUserName.visibility = View.GONE
+            binding.btnMyAccountSettingsEditAccount.visibility = View.VISIBLE
+            binding.etMyAccountSettingsUserName.isEnabled = false
+            binding.etMyAccountSettingsFullName.isEnabled = false
+            binding.etMyAccountSettingsEmail.isEnabled = false
+
+            var newUserName = binding.etMyAccountSettingsUserName.text.toString()
+            var newFullName = binding.etMyAccountSettingsFullName.text.toString()
+            var newEmail = binding.etMyAccountSettingsEmail.text.toString()
+
+            updateUserData(auth.uid.toString(), newUserName, newFullName, newEmail)
+
+        }
+
+        binding.btnMyAccountSettingsDeleteAccount.setOnClickListener{
+            val builder = AlertDialog.Builder(this@MyAccountSettings)
+            builder.setMessage("Esta seguro de borrar su cuenta?")
+                .setCancelable(false)
+                .setPositiveButton("Yes") { dialog, id ->
+
+                    val firestoreDatabase =  Firebase.firestore
+                    firestoreDatabase.collection("users").document(auth.uid.toString())
+                        .delete()
+                        .addOnSuccessListener { Log.d("DB", "Usuario eliminado correctamente!") }
+                        .addOnFailureListener { e -> Log.w("DB", "Error deleting document", e) }
+
+                    auth.currentUser?.delete()
+                        ?.addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                Log.d("AUTH", "User account deleted.")
+                            }
+                        }
+
+                    auth.currentUser == null
+                    //Return to Login
+                    val intent= Intent(this, MainActivity::class.java)
+                    this.startActivity(intent)
+                }
+                .setNegativeButton("No") { dialog, id ->
+                    dialog.dismiss()
+                }
+            val alert = builder.create()
+            alert.show()
+        }
+
+
+    }
+
+    private fun updateUserData(userUid:String, newUserName:String, newFullName:String, newEmail:String){
+        val firestoreDatabase =  Firebase.firestore
+
+        val washingtonRef = firestoreDatabase.collection("users").document(userUid)
+
+        washingtonRef
+            .update("username", newUserName, "name", newFullName, "email" , newEmail)
+            .addOnSuccessListener { Log.d("DB", "Datos del usuario actualizados!") ; Toast.makeText(baseContext, "Datos actualizados", Toast.LENGTH_SHORT).show() ; fetchUserData()}
+            .addOnFailureListener { e -> Log.w("DB", "Error actualizando el usuario", e) ; Toast.makeText(baseContext, "Error al actualizar los datos", Toast.LENGTH_SHORT).show() }
     }
 
     private fun fetchUserData() {
@@ -84,7 +155,15 @@ class MyAccountSettings : AppCompatActivity() {
 
     private fun loadUserData(user:Usuario?){
         binding.tvMyAccountSettingsUserName.text = user!!.username
+        binding.etMyAccountSettingsUserName.setText(user!!.username)
         binding.etMyAccountSettingsFullName.setText(user!!.name)
         binding.etMyAccountSettingsEmail.setText(user!!.email)
+
+        binding.btnMyAccountSettingsConfirmChanges.visibility = View.GONE
+        binding.btnMyAccountSettingsDeleteAccount.visibility = View.GONE
+        binding.etMyAccountSettingsUserName.visibility = View.GONE
+        binding.etMyAccountSettingsUserName.isEnabled = false
+        binding.etMyAccountSettingsFullName.isEnabled = false
+        binding.etMyAccountSettingsEmail.isEnabled = false
     }
 }

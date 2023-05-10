@@ -75,9 +75,25 @@
         android:layout_marginBottom="16dp"
         android:gravity="center"
         android:fontFamily="@font/lato_bold"
-        android:text="Paul A León"
+        android:text="#NAME#"
         android:textColor="@color/mainTextColor"
         android:textSize="24sp"/>
+
+    <EditText
+        android:id="@+id/etMyAccountSettings_userName"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="4dp"
+        android:layout_gravity="center"
+        android:ems="24"
+        android:inputType="text"
+        android:text="#USERNAME#"
+        android:textSize="16sp"
+        android:fontFamily="@font/lato_regular"
+        android:textColorHint="@color/secondTextColor"
+        android:textColor="@color/secondTextColor"
+        />
 
     <EditText
         android:id="@+id/etMyAccountSettings_fullName"
@@ -88,11 +104,12 @@
         android:layout_gravity="center"
         android:ems="24"
         android:inputType="text"
-        android:text="Paul Alberto León"
+        android:text="#NAME#"
         android:textSize="16sp"
         android:fontFamily="@font/lato_regular"
         android:textColorHint="@color/secondTextColor"
-        android:textColor="@color/secondTextColor" />
+        android:textColor="@color/secondTextColor"
+        />
 
     <EditText
         android:id="@+id/etMyAccountSettings_email"
@@ -103,7 +120,7 @@
         android:layout_gravity="center"
         android:ems="24"
         android:inputType="text"
-        android:text="paul.leon@gmail.com"
+        android:text="#EMAIL"
         android:textSize="16sp"
         android:fontFamily="@font/lato_regular"
         android:textColorHint="@color/secondTextColor"
@@ -130,12 +147,36 @@
         android:id="@+id/btnMyAccountSettings_editAccount"
         android:layout_width="196dp"
         android:layout_height="55dp"
-        android:layout_marginVertical="16dp"
+        android:layout_marginVertical="8dp"
         android:gravity="center"
         android:text="@string/editAccount"
         android:textColor="@color/contrastTextColor"
         android:fontFamily="@font/lato_bold"
         android:layout_gravity="center"/>
+
+    <Button
+        android:id="@+id/btnMyAccountSettings_confirmChanges"
+        android:layout_width="192dp"
+        android:layout_height="52dp"
+        android:gravity="center"
+        android:text="@string/confirmChanges"
+        android:textColor="@color/contrastTextColor"
+        android:fontFamily="@font/lato_bold"
+        android:layout_gravity="center"/>
+
+    <Button
+        android:id="@+id/btnMyAccountSettings_deleteAccount"
+        android:layout_width="160dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="28dp"
+        android:gravity="center"
+        android:textSize="12sp"
+        android:text="@string/deleteAccount"
+        android:textColor="@color/contrastTextColor"
+        android:fontFamily="@font/lato_bold"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/red"
+/>
 
 
     <RelativeLayout

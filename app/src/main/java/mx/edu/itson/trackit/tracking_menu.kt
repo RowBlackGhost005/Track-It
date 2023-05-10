@@ -10,7 +10,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import mx.edu.itson.trackit.data.Envio
 import mx.edu.itson.trackit.data.PuntoControl
@@ -95,33 +97,25 @@ class tracking_menu : AppCompatActivity() {
         val firestoreDatabase = Firebase.firestore
 
         parcels?.let {
-            var contador: Int = 0
+            var contador = 0
             for (x in it){
-                val enviosRef = firestoreDatabase.collection("envios").document(x.toString())
-                enviosRef.get()
-                    .addOnSuccessListener { document ->
-                        if (document != null) {
-                            val envio: Envio? = document.toObject(Envio::class.java)
+                val enviosRef = firestoreDatabase.collection("envios").whereEqualTo("trackId",x.toString()).get().addOnSuccessListener(){
 
-                            this.parcelsobj?.add(envio)
+                    for(documentos:QueryDocumentSnapshot in it){
 
-                            contador++
+                        parcelsobj?.add(documentos.toObject(Envio::class.java))
 
-                            if(contador == it.size){
-                              agregarRastreos()
-                            }
-
-                            Log.d("DB", "DocumentSnapshot data: ${document.data}")
-                        } else {
-                            Log.d("DB", "No such document")
-                        }
                     }
-                    .addOnFailureListener { exception ->
-                        Log.d("DB", "get failed with ", exception)
+
+                    contador++
+
+                    if(contador == parcels?.size){
+                        agregarRastreos()
                     }
+
+                }
             }
         }
-
     }
 
     //obtiene los id de envios del usuario activo

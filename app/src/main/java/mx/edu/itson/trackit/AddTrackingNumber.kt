@@ -7,9 +7,13 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import mx.edu.itson.trackit.data.Envio
+import mx.edu.itson.trackit.data.Usuario
 
 class AddTrackingNumber : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,23 +52,15 @@ class AddTrackingNumber : AppCompatActivity() {
         var etTrack : EditText = findViewById(R.id.etAddTrackingNumber_trackingNumber)
 
         val firestoreDatabase = Firebase.firestore
-        val enviosRef = firestoreDatabase.collection("envios").document(etTrack.text.toString())
+        val enviosRef = firestoreDatabase.collection("envioConsumir").whereEqualTo("trackId",etTrack.text.toString()).get().addOnSuccessListener(){
 
-        enviosRef.get()
-            .addOnSuccessListener { document ->
-                if (document != null) {
-                    val envio: Envio? = document.toObject(Envio::class.java)
+            for(documentos: QueryDocumentSnapshot in it){
 
-                    guardaEnvio(envio)
+                guardaEnvio(documentos.toObject(Envio::class.java))
 
-                    Log.d("DB", "DocumentSnapshot data: ${document.data}")
-                } else {
-                    Log.d("DB", "No such document")
-                }
             }
-            .addOnFailureListener { exception ->
-                Log.d("DB", "get failed with ", exception)
-            }
+
+        }
 
     }
 
@@ -76,6 +72,29 @@ class AddTrackingNumber : AppCompatActivity() {
         if (envio != null) {
             enviosRef.add(envio)
         }
+
+        //agrega el track id a la listas del usuario
+        val user = Firebase.auth.currentUser
+
+        val userRef = firestoreDatabase.collection("users").whereEqualTo("uid",user?.uid.toString()).get().addOnSuccessListener(){
+
+            for(documentos: QueryDocumentSnapshot in it){
+
+                val usuario: Usuario = documentos.toObject(Usuario::class.java)
+
+                actualizarUsuario(usuario,documentos.id.toString(),envio?.TrackId.toString())
+
+            }
+
+        }
+
+    }
+
+    fun actualizarUsuario(usuario: Usuario,id: String,trackId: String){
+        val firestoreDatabase = Firebase.firestore
+        val userRef = firestoreDatabase.collection("users").document(id)
+
+        userRef.update("parcels",FieldValue.arrayUnion(trackId))
 
     }
 

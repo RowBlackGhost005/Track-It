@@ -32,10 +32,13 @@ class tracking_menu : AppCompatActivity() {
 
         var myTrackings: ImageButton = findViewById(R.id.ibTrackingMenu_myTrackings)
 
+        /*
         myTrackings.setOnClickListener(){
             var intent: Intent = Intent(this , tracking_menu::class.java)
             startActivity(intent)
         }
+
+         */
 
         var myAccount: ImageButton = findViewById(R.id.ibTrackingMenu_myAccount)
 

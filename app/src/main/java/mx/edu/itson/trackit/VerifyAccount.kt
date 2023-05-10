@@ -26,38 +26,25 @@ class VerifyAccount : AppCompatActivity() {
 
         auth = Firebase.auth
 
-        var btnCreateAccount: Button = findViewById(R.id.btnVerifyAccount_createAccount)
+        var email = getIntent().getStringExtra("userEmail")
+        var username = getIntent().getStringExtra("username")
 
-        btnCreateAccount.setOnClickListener(){
+        if (email != null) {
+            var verifyText = binding.tvVerifyAccountVerifyEmailText.text
+            binding.tvVerifyAccountVerifyEmailText.setText(verifyText.replaceFirst(Regex.fromLiteral("correo@mail.com") , email))
+        }
 
-            var email= getIntent().getStringExtra("email")
-            var password = getIntent().getStringExtra("password")
+        binding.tvVerifyAccountUsername.text = username
 
-            CreateAccount(email.toString(),password.toString())
+
+        binding.btnVerifyAccountCreateAccount.setOnClickListener(){
+            reload()
         }
     }
 
-    private fun CreateAccount(email:String,password:String){
-        auth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Log.d("TAG", "createUserWithEmail:success")
-                    //val user = auth.currentUser
-                    //updateUI(user)
-                    reaload()
-                } else {
-                    // If sign in fails, display a message to the user.
-                    Log.w("TAG", "createUserWithEmail:failure", task.exception)
-                    Toast.makeText(baseContext, "Authentication failed.",
-                        Toast.LENGTH_SHORT).show()
-                    //updateUI(null)
-                }
-            }
-    }
 
-    private fun reaload(){
-        val intent= Intent(this,MainPage::class.java)
+    private fun reload(){
+        val intent= Intent(this, MainActivity::class.java)
         this.startActivity(intent)
     }
 }

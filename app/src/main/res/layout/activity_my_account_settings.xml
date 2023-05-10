@@ -109,6 +109,7 @@
         android:textColorHint="@color/secondTextColor"
         android:textColor="@color/secondTextColor" />
 
+<!--
     <EditText
         android:id="@+id/etMyAccountSettings_phone"
         android:layout_width="match_parent"
@@ -123,7 +124,7 @@
         android:fontFamily="@font/lato_regular"
         android:textColorHint="@color/secondTextColor"
         android:textColor="@color/secondTextColor" />
-
+-->
 
     <Button
         android:id="@+id/btnMyAccountSettings_editAccount"

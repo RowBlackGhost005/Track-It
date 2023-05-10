@@ -19,11 +19,13 @@
     <!--Verificar Cuenta-->
     <string name="verifyAccount">Verificación de cuenta</string>
     <string name="userNamePlaceHolder">#Username#</string>
-    <string name="checkEmailPlaceHolder">Se ha enviado un correo a correo@mail.com un código de verificación para crear tu cuenta.</string>
+    <string name="checkEmailPlaceHolder">Se ha enviado un correo a correo@mail.com con un enlace para validar su cuenta.</string>
     <string name="verifyCode">Código de verificación</string>
     <string name="noCodeReceived">No me ha llegado el código</string>
     <string name="resendCode">Volver a enviar</string>
-    <string name="privacyDisclaimer">Al continuar usted acepta nuestro Términos y Condiciones del servicio además de permitirnos compartir información por su correo electrónico</string>
+    <string name="privacyDisclaimer">Al continuar acepta los Términos y Condiciones del servicio de Track-it!</string>
+    <string name="returnLogin">Iniciar sesión</string>
+    <string name="retryLogin">Presione el botón de Iniciar Sesión si ya ha verificado su cuenta.</string>
 
     <!--Pagina Principal-->
     <string name="noPackageRegisted">No hay envíos registrados</string>

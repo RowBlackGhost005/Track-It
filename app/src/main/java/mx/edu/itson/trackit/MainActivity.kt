@@ -8,6 +8,8 @@ import android.widget.Button
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.ktx.database
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import mx.edu.itson.trackit.databinding.ActivityMainBinding
 
@@ -26,8 +28,9 @@ class MainActivity : AppCompatActivity() {
         auth = Firebase.auth
 
         val user = Firebase.auth.currentUser
-        if (user != null) {
-            reaload()
+
+        if (user != null && user.isEmailVerified) {
+            authSuccess()
         } else {
 
         }
@@ -41,7 +44,7 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(baseContext, "Mail o contraseña incorrecta.",
                         Toast.LENGTH_SHORT).show()
                 }else ->{
-                SignIn(mEmail,mPassword)
+                LogIn(mEmail,mPassword)
             }
             }
         }
@@ -51,7 +54,7 @@ class MainActivity : AppCompatActivity() {
         var btnRegister: Button = findViewById(R.id.btnMain_register)
 
         btnRegister.setOnClickListener(){
-            var intent: Intent = Intent(this , CreateAccount::class.java)
+            var intent = Intent(this , CreateAccount::class.java)
             startActivity(intent)
         }
 
@@ -66,17 +69,25 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun SignIn(email:String,password:String){
+    private fun LogIn(email:String,password:String){
         auth.signInWithEmailAndPassword(email,password)
             .addOnCompleteListener(this){ task ->
                 if(task.isSuccessful){
-                    Log.d("TAG","signInWithEmail:success")
-                    //val user= auth.currentUser
-                    //updateUI(user)
-                    reaload()
+                    Log.d("AUTH","signInWithEmail:success")
+                    Log.d("AUTH", auth.uid.toString())
+
+                    if (auth.currentUser?.isEmailVerified() == true){
+                        authSuccess()
+                    }else{
+                        Toast.makeText(baseContext,"Porfavor valide su correo electrónico.", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this,VerifyAccount::class.java)
+                        intent.putExtra("userEmail" , binding.etMainUser.text.toString())
+                        this.startActivity(intent)
+                    }
+
                 }else{
                     Log.w("TAG","signInWithEmail:failure",task.exception)
-                    Toast.makeText(baseContext,"Authentication failed.",
+                    Toast.makeText(baseContext,"Error al iniciar sesión.",
                         Toast.LENGTH_SHORT).show()
                     //UpdateUI(null)
                 }
@@ -85,8 +96,10 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun reaload(){
-        val intent= Intent(this,MainPage::class.java)
+    private fun authSuccess(){
+        val intent = Intent(this,MainPage::class.java)
         this.startActivity(intent)
     }
+
+
 }

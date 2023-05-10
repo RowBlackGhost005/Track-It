@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.auth.User
@@ -31,6 +32,9 @@ class MyAccountSettings : AppCompatActivity() {
         val user = Firebase.auth.currentUser
         if (user != null && user.isEmailVerified) {
             fetchUserData()
+        }else{
+            var intent: Intent = Intent(this , MainActivity::class.java)
+            startActivity(intent)
         }
 
 
@@ -46,6 +50,14 @@ class MyAccountSettings : AppCompatActivity() {
 
         binding.ibMyAccountSettingsBack.setOnClickListener{
             var intent: Intent = Intent(this , MyAccount::class.java)
+            startActivity(intent)
+        }
+
+        binding.ibMyAccountSettingsLogout.setOnClickListener(){
+            auth.signOut()
+            Toast.makeText(baseContext, "Cerrando sesión. . .",
+                Toast.LENGTH_SHORT).show()
+            var intent: Intent = Intent(this , MainActivity::class.java)
             startActivity(intent)
         }
 

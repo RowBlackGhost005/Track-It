@@ -1,61 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_marginTop="15dp"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:paddingVertical="4dp"
     android:orientation="vertical"
+    android:background="@drawable/round_parcel_bg"
     >
 
-   <LinearLayout
+   <GridLayout
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:orientation="horizontal"
-       android:paddingLeft="15dp"
-       android:paddingRight="15dp"
+       android:columnCount="3"
+       android:rowCount="1"
        >
 
       <ImageView
           android:id="@+id/ivStatusTracking_Logo"
-          android:layout_width="40dp"
-          android:layout_height="40dp"
-          android:layout_gravity="left"
+          android:layout_width="42dp"
+          android:layout_height="42dp"
+          android:layout_gravity="left|center"
           android:layout_marginLeft="5dp"
-          android:layout_marginVertical="8dp"
+          android:layout_marginVertical="2dp"
           android:src="@drawable/transportista"/>
 
       <TextView
           android:id="@+id/tvTrackingMenu_title"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_marginLeft="5dp"
-          android:layout_marginRight="100dp"
-          android:layout_gravity="center"
+          android:layout_marginLeft="16dp"
+          android:layout_gravity="center_vertical|start"
           android:fontFamily="@font/lato_black"
           android:text="@string/trackingObject"
           android:textColor="@color/mainTextColor"
-          android:textSize="16sp" />
+          android:textSize="16sp"/>
 
+      <ImageButton
+          android:id="@+id/ibStatusTracking_Settings"
+          android:layout_width="42dp"
+          android:layout_height="42dp"
+          android:scaleType="centerInside"
+          android:src="@drawable/trespuntos"
+          android:backgroundTint="@android:color/transparent"/>
 
-
-   </LinearLayout>
+   </GridLayout>
 
    <LinearLayout
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:orientation="horizontal"
-       android:paddingLeft="15dp"
-       android:paddingRight="15dp"
+       android:layout_marginBottom="4dp"
        >
       <TextView
           android:id="@+id/tvTrackingObject_adress"
-
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_gravity="center"
           android:fontFamily="@font/lato_regular"
           android:text="@string/trackingObject"
           android:textColor="@color/secondTextColor"
-          android:textSize="13sp" />
+          android:textSize="16sp" />
 
 
    </LinearLayout>
@@ -64,55 +71,46 @@
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:orientation="horizontal"
-       android:paddingLeft="15dp"
-       android:paddingRight="15dp"
        android:paddingTop="0dp"
+
        >
       <View
-          android:layout_width="370dp"
+          android:layout_width="match_parent"
           android:layout_height="2dp"
           android:layout_gravity="center"
           android:background="@android:color/darker_gray" />
-
-
-
    </LinearLayout>
 
-   <LinearLayout
+   <GridLayout
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:orientation="horizontal"
-       android:paddingLeft="15dp"
-       android:paddingRight="15dp"
-       android:layout_marginTop="10dp"
+       android:layout_marginTop="4dp"
+       android:layout_marginBottom="4dp"
+       android:columnCount="2"
+       android:rowCount="1"
        >
 
       <TextView
           android:id="@+id/tvTrackingObject_status"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_gravity="center"
-          android:fontFamily="@font/lato_regular"
+          android:layout_gravity="start|center"
+          android:fontFamily="@font/lato_bold"
           android:text="@string/trackingObject"
           android:textColor="@color/secondTextColor"
-          android:textSize="13sp" />
-
-      <View
-          android:layout_width="50dp"
-          android:layout_height="0dp"
-          />
+          android:textSize="14sp" />
 
       <TextView
           android:id="@+id/tvTrackingObject_status2"
-          android:layout_width="195dp"
-          android:layout_height="16dp"
-          android:layout_gravity="center"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="right"
           android:fontFamily="@font/lato_regular"
           android:text="@string/trackingObject"
           android:textColor="@color/secondTextColor"
-          android:textSize="13sp" />
+          android:textSize="14sp" />
 
-   </LinearLayout>
+   </GridLayout>
 
 
 </LinearLayout>

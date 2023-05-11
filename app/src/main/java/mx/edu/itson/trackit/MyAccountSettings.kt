@@ -109,7 +109,7 @@ class MyAccountSettings : AppCompatActivity() {
                             }
                         }
 
-                    auth.currentUser == null
+                    auth.signOut()
                     //Return to Login
                     val intent= Intent(this, MainActivity::class.java)
                     this.startActivity(intent)

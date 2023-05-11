@@ -18,14 +18,23 @@
         android:textColor="@color/mainTextColor"
         android:textSize="24sp"/>
 
-    <ImageButton
-        android:id="@+id/ibMyAccount_myAccountSettings"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:scaleType="centerCrop"
-        android:src="@drawable/agregarimagen"
-        android:backgroundTint="@android:color/transparent"/>
+        android:layout_marginTop="8dp"
+        app:cardCornerRadius="80dp">
+
+        <ImageButton
+            android:id="@+id/ibMyAccount_myAccountSettings"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            android:src="@drawable/agregarimagen"
+            android:background="@android:color/transparent"
+            android:adjustViewBounds="true"/>
+    </androidx.cardview.widget.CardView>
 
     <GridLayout
         android:id="@+id/glMyAccount_features"

@@ -1,28 +1,33 @@
 package mx.edu.itson.trackit
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.BitmapFactory
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.auth.User
+import com.google.firebase.database.ktx.database
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import mx.edu.itson.trackit.data.Usuario
-import mx.edu.itson.trackit.databinding.ActivityMainBinding
-import mx.edu.itson.trackit.databinding.ActivityMyAccountBinding
 import mx.edu.itson.trackit.databinding.ActivityMyAccountSettingsBinding
 
 class MyAccountSettings : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var binding:ActivityMyAccountSettingsBinding
+
+    private val File = 1
+    private val database = Firebase.database
+    private val picsDatabase = database.getReference("usersProfilePics")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_account_settings)
@@ -121,9 +126,52 @@ class MyAccountSettings : AppCompatActivity() {
             alert.show()
         }
 
+        binding.ibMyAccountSettingsProfilePic.setOnClickListener{
+            fileUpload()
+        }
+
 
     }
 
+    private fun fileUpload() {
+        val intent = Intent(Intent.ACTION_GET_CONTENT)
+        intent.type = "*/*"
+        startActivityForResult(intent, File)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == File) {
+            if (resultCode == RESULT_OK) {
+                val FileUri = data!!.data
+                val Folder: StorageReference =
+                    FirebaseStorage.getInstance().getReference().child("usersProfilePics")
+                val file_name: StorageReference = Folder.child(auth.uid!!)
+                updateProfilePic(file_name.path)
+                file_name.putFile(FileUri!!).addOnSuccessListener { taskSnapshot ->
+                    file_name.getDownloadUrl().addOnSuccessListener { uri ->
+                        val hashMap =
+                            HashMap<String, String>()
+                        hashMap["link"] = java.lang.String.valueOf(uri)
+                        picsDatabase.setValue(hashMap)
+                        Log.d("PPIC", "Foto de perfil subida correctamente")
+                    }
+                }
+            }
+        }
+    }
+
+    private fun updateProfilePic(profilePic:String){
+        val firestoreDatabase =  Firebase.firestore
+
+        val washingtonRef = firestoreDatabase.collection("users").document(auth.uid!!)
+
+        washingtonRef
+            .update("profilePic", profilePic)
+            .addOnSuccessListener { Log.d("DB", "Foto de perfil actualizada!") ; Toast.makeText(baseContext, "Foto de perfil actualizada!", Toast.LENGTH_SHORT).show() ; fetchUserData()}
+            .addOnFailureListener { e -> Log.w("DB", "Error actualizando la imágen", e) ; Toast.makeText(baseContext, "Error al actualizar la foto de perfil", Toast.LENGTH_SHORT).show() }
+
+    }
     private fun updateUserData(userUid:String, newUserName:String, newFullName:String, newEmail:String){
         val firestoreDatabase =  Firebase.firestore
 
@@ -135,9 +183,21 @@ class MyAccountSettings : AppCompatActivity() {
             .addOnFailureListener { e -> Log.w("DB", "Error actualizando el usuario", e) ; Toast.makeText(baseContext, "Error al actualizar los datos", Toast.LENGTH_SHORT).show() }
     }
 
+
     private fun fetchUserData() {
         val firestoreDatabase = Firebase.firestore
         val docRef = firestoreDatabase.collection("users").document(auth.uid.toString())
+
+        //Fetch Profile Pic
+        val Folder: StorageReference = FirebaseStorage.getInstance().getReference().child("usersProfilePics/"+ auth.uid.toString())
+        val localFile = java.io.File.createTempFile("tempImage" , "jpg")
+        Folder.getFile(localFile).addOnSuccessListener {
+            val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
+            val drawable: Drawable = BitmapDrawable(resources, bitmap)
+            binding.ibMyAccountSettingsProfilePic.setImageBitmap(bitmap)
+        }.addOnFailureListener {
+            Log.w("DB", "Error al cargar la foto de perfil del usuario") ; Toast.makeText(baseContext, "Error al cargar la foto de perfil", Toast.LENGTH_SHORT).show()
+        }
 
         docRef.get()
             .addOnSuccessListener { document ->

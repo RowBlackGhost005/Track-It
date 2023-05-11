@@ -32,13 +32,13 @@ class tracking_menu : AppCompatActivity() {
 
         var myTrackings: ImageButton = findViewById(R.id.ibTrackingMenu_myTrackings)
 
-        /*
+
         myTrackings.setOnClickListener(){
             var intent: Intent = Intent(this , tracking_menu::class.java)
             startActivity(intent)
         }
 
-         */
+
 
         var myAccount: ImageButton = findViewById(R.id.ibTrackingMenu_myAccount)
 
@@ -86,7 +86,6 @@ class tracking_menu : AppCompatActivity() {
 
         }
 
-
         var listView: ListView =findViewById(R.id.listViewTrackingMenu) as ListView
         var adaptador: tracking_menu.AdaptadorRastreos = tracking_menu.AdaptadorRastreos(this, rastreos)
         listView.adapter=adaptador
@@ -98,26 +97,38 @@ class tracking_menu : AppCompatActivity() {
     fun consultaEnvios() {
 
         val firestoreDatabase = Firebase.firestore
+        var contador = 0
 
         parcels?.let {
-            var contador = 0
             for (x in it){
-                val enviosRef = firestoreDatabase.collection("envios").whereEqualTo("trackId",x.toString()).get().addOnSuccessListener(){
 
-                    for(documentos:QueryDocumentSnapshot in it){
+                val index = it.indexOf(x)
+            val envioRef = firestoreDatabase.collection("envios").document(parcels?.get(index).toString())
 
-                        parcelsobj?.add(documentos.toObject(Envio::class.java))
+            envioRef.get()
+                .addOnSuccessListener { document ->
+                    if (document != null) {
+                        val envio: Envio? = document.toObject(Envio::class.java)
 
+                        parcelsobj?.add(envio)
+
+                        contador++
+
+                        if(contador == it.size){
+                            agregarRastreos()
+                        }
+
+                        Log.d("DB", "DocumentSnapshot data: ${document.data}")
+                    } else {
+                        Log.d("DB", "No such document")
                     }
-
-                    contador++
-
-                    if(contador == parcels?.size){
-                        agregarRastreos()
-                    }
-
                 }
+                .addOnFailureListener { exception ->
+                    Log.d("DB", "get failed with ", exception)
+                }
+
             }
+
         }
     }
 

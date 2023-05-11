@@ -2,6 +2,7 @@ package mx.edu.itson.trackit
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
@@ -47,60 +48,108 @@ class AddTrackingNumber : AppCompatActivity() {
 
 
     //consulta los envio por id
-    fun consultaEnvios() {
+    fun consultaEnvios(){
 
         var etTrack : EditText = findViewById(R.id.etAddTrackingNumber_trackingNumber)
 
         val firestoreDatabase = Firebase.firestore
-        val enviosRef = firestoreDatabase.collection("envioConsumir").whereEqualTo("trackId",etTrack.text.toString()).get().addOnSuccessListener(){
 
-            for(documentos: QueryDocumentSnapshot in it){
+        val enviosRef = firestoreDatabase.collection("envioConsumir").document(etTrack.text.toString())
 
-                guardaEnvio(documentos.toObject(Envio::class.java))
+        enviosRef.get()
+            .addOnSuccessListener { document ->
+                if (document != null) {
+                    val envio: Envio? = document.toObject(Envio::class.java)
 
-            }
+                    try{
+                        var comprobar= !envio?.TrackId!!.isEmpty()
+                        verificaEnvio(envio,etTrack.text.toString())
 
-        }
+                    }catch (e: Exception){
+                        val toast =
+                            Toast.makeText(applicationContext, "No se ha encontrado el envio", Toast.LENGTH_SHORT)
+                        toast.setMargin(50f, 50f)
+                        toast.show()
+                    }
+
+
+                        Log.d("DB", "DocumentSnapshot data: ${document.data}")
+                    } else {
+                        Log.d("DB", "No such document")
+                    }
+                }
+                .addOnFailureListener { exception ->
+                    Log.d("DB", "get failed with ", exception)
+                }
+
 
     }
 
-    fun guardaEnvio(envio: Envio?) {
+    fun verificaEnvio(envio: Envio?,id: String?) {
 
         val firestoreDatabase = Firebase.firestore
-        val enviosRef = firestoreDatabase.collection("envios")
+
 
         //agrega el track id a la listas del usuario
         val user = Firebase.auth.currentUser
 
-        val userRef = firestoreDatabase.collection("users").whereEqualTo("uid",user?.uid.toString()).get().addOnSuccessListener(){
 
-            for(documentos: QueryDocumentSnapshot in it){
+        val userRef = firestoreDatabase.collection("users").document(user?.uid.toString())
 
-                val usuario: Usuario = documentos.toObject(Usuario::class.java)
+        //obtiene el usuario para verificar si ya tiene el objeto
+        userRef.get()
+            .addOnSuccessListener { document ->
+                if (document != null) {
 
-                if(!usuario.parcels.contains(envio?.TrackId.toString())){
+                    val usuario: Usuario? = document.toObject(Usuario::class.java)
+                    //si no contiene, entonces procede a agregar envio
+                    if(!usuario?.parcels!!.contains(id.toString())){
 
-                    if (envio != null) {
-                        enviosRef.add(envio)
+                        guardaEnvio(envio,id)
+
+                    }else{
+                        //muestra mensaje de que ya se contiene el envio
+                        val toast =
+                            Toast.makeText(applicationContext, "Envio ya esta registrado en la cuenta", Toast.LENGTH_SHORT)
+                        toast.setMargin(50f, 50f)
+                        toast.show()
                     }
 
-                    actualizarUsuario(usuario,documentos.id.toString(),envio?.TrackId.toString())
-                }else{
-                    val toast =
-                        Toast.makeText(applicationContext, "Envio ya esta registrado en la cuenta", Toast.LENGTH_SHORT)
-                    toast.setMargin(50f, 50f)
-                    toast.show()
+                    Log.d("DB", "DocumentSnapshot data: ${document.data}")
+                } else {
+                    Log.d("DB", "No such document")
                 }
-
-
-
             }
-
-        }
+            .addOnFailureListener { exception ->
+                Log.d("DB", "get failed with ", exception)
+            }
 
     }
 
-    fun actualizarUsuario(usuario: Usuario,id: String,trackId: String){
+    fun guardaEnvio(envio: Envio?,id:String?){
+        val user = Firebase.auth.currentUser
+        val firestoreDatabase = Firebase.firestore
+        val enviosRef = firestoreDatabase.collection("envios").document(id.toString())
+
+        //verifica si el envio ya se encuentra en la coleccion
+        enviosRef.get().addOnSuccessListener { document ->
+            if(document != null){
+
+                if (envio != null) {
+                    enviosRef.set(envio)
+                }
+
+                actualizarUsuario(user?.uid.toString(),id.toString())
+
+                Log.d("DB", "DocumentSnapshot data: ${document.data}")
+            }else{
+                actualizarUsuario(user?.uid.toString(),id.toString())
+                Log.d("DB", "No such document")
+            }
+        }
+    }
+
+    fun actualizarUsuario(id: String,trackId: String){
         val firestoreDatabase = Firebase.firestore
         val userRef = firestoreDatabase.collection("users").document(id)
 

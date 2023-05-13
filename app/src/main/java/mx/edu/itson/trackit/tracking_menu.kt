@@ -20,10 +20,8 @@ import mx.edu.itson.trackit.data.Usuario
 
 class tracking_menu : AppCompatActivity() {
 
-    //lista con envios que se usa para cargar los elementos en pantalla
-    var rastreos=ArrayList<Tracking>()
     //contiene objetos tipo envio
-    var parcelsobj: ArrayList<Envio?>? =ArrayList()
+    var parcelsobj: ArrayList<Envio> =ArrayList()
     //lista de a
     var parcels: ArrayList<String>? = ArrayList()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,7 +35,6 @@ class tracking_menu : AppCompatActivity() {
             var intent: Intent = Intent(this , tracking_menu::class.java)
             startActivity(intent)
         }
-
 
 
         var myAccount: ImageButton = findViewById(R.id.ibTrackingMenu_myAccount)
@@ -64,30 +61,8 @@ class tracking_menu : AppCompatActivity() {
     //agrega los rastreos y los aniade a la lista que se muestra en pantalla
     fun agregarRastreos(){
 
-        println(parcelsobj?.size)
-
-        parcelsobj?.let {
-            for (x in it) {
-                var envio: Envio? = x
-
-                var icono: Int
-
-                if(envio?.Estado.toString().equals("en camino")){
-                    icono = R.drawable.transportista
-                }else if(envio?.Estado.toString().equals("entregado")){
-                    icono = R.drawable.entregado
-                }else{
-                    icono = R.drawable.enespera
-                }
-
-                rastreos.add(Tracking(envio?.TrackId.toString(),envio?.Destino.toString(),envio?.Estado.toString(),
-                    "Enviado por Estafeta",icono))
-            }
-
-        }
-
         var listView: ListView =findViewById(R.id.listViewTrackingMenu) as ListView
-        var adaptador: tracking_menu.AdaptadorRastreos = tracking_menu.AdaptadorRastreos(this, rastreos)
+        var adaptador: tracking_menu.AdaptadorRastreos = tracking_menu.AdaptadorRastreos(this, parcelsobj)
         listView.adapter=adaptador
 
     }
@@ -110,7 +85,7 @@ class tracking_menu : AppCompatActivity() {
                     if (document != null) {
                         val envio: Envio? = document.toObject(Envio::class.java)
 
-                        parcelsobj?.add(envio)
+                        parcelsobj?.add(envio!!)
 
                         contador++
 
@@ -164,10 +139,10 @@ class tracking_menu : AppCompatActivity() {
 
 
     private class AdaptadorRastreos: BaseAdapter {
-        var rastreos=ArrayList<Tracking>()
+        var rastreos=ArrayList<Envio>()
         var contexto: Context?=null
 
-        constructor(contexto: Context, rastreos:ArrayList<Tracking>){
+        constructor(contexto: Context, rastreos:ArrayList<Envio>){
             this.rastreos=rastreos
             this.contexto=contexto
         }
@@ -191,8 +166,18 @@ class tracking_menu : AppCompatActivity() {
             var vista = inflador.inflate(R.layout.rastreo_view,null)
 
             vista.setOnClickListener(){
-                    var intent: Intent = Intent(contexto , DeliveryStatus::class.java)
-                    contexto!!.startActivity(intent)
+                var intent: Intent = Intent(contexto , DeliveryStatus::class.java)
+
+                var cargarEnvio = rastreos.get(p0)
+
+                intent.putExtra("envio",cargarEnvio.TrackId)
+                intent.putExtra("estado",cargarEnvio.Estado)
+                intent.putExtra("puntos",cargarEnvio.PuntosControl)
+                intent.putExtra("destino",cargarEnvio.Destino)
+                intent.putExtra("latitud",cargarEnvio.coordenadas.latitude)
+                intent.putExtra("longitud",cargarEnvio.coordenadas.longitude)
+
+                contexto!!.startActivity(intent)
             }
 
             var imagen= vista.findViewById(R.id.ivStatusTracking_Logo) as ImageView
@@ -201,11 +186,22 @@ class tracking_menu : AppCompatActivity() {
             var status= vista.findViewById(R.id.tvTrackingObject_status) as TextView
             var carrier= vista.findViewById(R.id.tvTrackingObject_status2) as TextView
 
-            imagen.setImageResource(trk.image)
-            codigoRastreo.setText(trk.TrackingCode)
-            direccion.setText(trk.adress)
-            status.setText(trk.status)
-            carrier.setText(trk.carrier)
+            var icono: Int
+
+            if(trk.Estado.equals("en camino")){
+                icono = R.drawable.transportista
+            }else if(trk.Estado.equals("entregado")){
+                icono = R.drawable.entregado
+            }else{
+                icono = R.drawable.enespera
+            }
+
+
+            imagen.setImageResource(icono)
+            codigoRastreo.setText(trk.TrackId)
+            direccion.setText(trk.Destino)
+            status.setText(trk.Estado)
+            carrier.setText(trk.Paqueteria)
             return vista
 
         }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <ListView
+        android:id="@+id/listViewHistorialPuntos"
+        android:layout_width="407dp"
+        android:layout_height="491dp"
+        android:layout_marginHorizontal="4dp"
+        android:divider="@null"
+        android:dividerHeight="5dp" />
+
+</androidx.cardview.widget.CardView>

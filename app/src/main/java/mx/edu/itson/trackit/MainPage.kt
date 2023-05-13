@@ -38,14 +38,14 @@ class MainPage : AppCompatActivity() {
             startActivity(intent)
         }
 
-/*
+
         var myTrackings: ImageButton = findViewById(R.id.ibMainPage_myTrackings)
 
         myTrackings.setOnClickListener(){
             var intent: Intent = Intent(this , tracking_menu::class.java)
             startActivity(intent)
         }
-*/
+
 
         var myAccount: ImageButton = findViewById(R.id.ibMainPage_myAccount)
 
@@ -58,6 +58,7 @@ class MainPage : AppCompatActivity() {
     }
 
     //metodo que verifica si el usuario tiene envios registrados en su cuenta
+
     fun verificaEnvios(){
         val user = Firebase.auth.currentUser
         val firestoreDatabase = Firebase.firestore
@@ -68,9 +69,7 @@ class MainPage : AppCompatActivity() {
                 if (document != null) {
                     val usuario: Usuario? = document.toObject(Usuario::class.java)
 
-                    comprobar = usuario?.parcels?.size
-
-                    if(comprobar!! > 0){
+                    if(!usuario?.parcels!!.isEmpty()){
                         var intent: Intent = Intent(this , tracking_menu::class.java)
                         startActivity(intent)
                     }
@@ -85,6 +84,7 @@ class MainPage : AppCompatActivity() {
             }
 
     }
+
 
 
 }

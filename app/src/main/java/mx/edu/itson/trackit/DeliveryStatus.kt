@@ -2,14 +2,12 @@ package mx.edu.itson.trackit
 
 import android.content.Context
 import android.content.Intent
-import android.media.Image
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -18,18 +16,14 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.bottomsheet.BottomSheetDialog
-import mx.edu.itson.trackit.data.Envio
 import mx.edu.itson.trackit.data.PuntoControl
-import org.w3c.dom.Text
-import java.io.Serializable
+
 
 class DeliveryStatus : AppCompatActivity(), OnMapReadyCallback {
 
     private var lng : Double = 2.292561
     private var lat : Double = 48.858419
     private var puntos: ArrayList<PuntoControl> = ArrayList<PuntoControl>()
-
 
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
     lateinit var mMap: GoogleMap
@@ -40,10 +34,15 @@ class DeliveryStatus : AppCompatActivity(), OnMapReadyCallback {
 
         //carga los datos del envio en pantalla
 
-        var iconoView : ImageView = this.findViewById(R.id.ivStatus) as ImageView
-        var trackView : TextView = this.findViewById(R.id.tvCode) as TextView
-        var estadoView: TextView = this.findViewById(R.id.tvStatusDeliveryStatus) as TextView
-        var destinoView : TextView = this.findViewById(R.id.tvDestino_deliveryStatus) as TextView
+        /**
+        val dialog = BottomSheetDialog(this)
+        val vista = LayoutInflater.from(this).inflate(R.layout.bottom_dialog_resource,null)
+        */
+
+        var iconoView : ImageView = findViewById(R.id.ivStatus) as ImageView
+        var trackView : TextView = findViewById(R.id.tvCode) as TextView
+        var estadoView: TextView = findViewById(R.id.tvStatusDeliveryStatus) as TextView
+        var destinoView : TextView = findViewById(R.id.tvDestino_deliveryStatus) as TextView
 
         var trkCode: String? = intent.getStringExtra("envio")
         var estado: String? = intent.getStringExtra("estado")
@@ -73,23 +72,28 @@ class DeliveryStatus : AppCompatActivity(), OnMapReadyCallback {
             startActivity(intent)
         }
 
-        var btnHistorial : Button = findViewById(R.id.btnHistorialPuntos)
 
-        btnHistorial.setOnClickListener(View.OnClickListener {
-
-            val dialog = BottomSheetDialog(this)
-            val vista = layoutInflater.inflate(R.layout.bottom_dialog_resource,null)
+        val listView: ListView = findViewById(R.id.listViewHistorialPuntos)
+        val adapter = AdaptadorBottomSheet(this, puntos)
+        listView.adapter = adapter
 
 
-            dialog.setCancelable(true)
-            dialog.setContentView(vista)
+        /**
+        dialog.setCancelable(true)
+        dialog.setContentView(vista)
 
-            var listView: ListView = vista.findViewById(R.id.listViewHistorialPuntos)
-            var adaptador: DeliveryStatus.AdaptadorBottomSheet = DeliveryStatus.AdaptadorBottomSheet(this,puntos)
-            listView.adapter=adaptador
 
-            dialog.show()
-        })
+
+        dialog.setOnShowListener { dialogInterface ->
+            val bottomSheetDialog = dialogInterface as BottomSheetDialog
+            val bottomSheet = bottomSheetDialog.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
+            val behavior = BottomSheetBehavior.from(bottomSheet!!)
+            behavior.skipCollapsed = true
+        }
+
+        dialog.show()
+        */
+
 
 
         //carga el mapa con las coordenadas obtenidas
@@ -105,6 +109,7 @@ class DeliveryStatus : AppCompatActivity(), OnMapReadyCallback {
         mMap.addMarker(MarkerOptions().position(posicion).title("posicion"))
         mMap.moveCamera(CameraUpdateFactory.newLatLng(posicion))
     }
+
 
     private class AdaptadorBottomSheet: BaseAdapter {
         var puntosDeControl=ArrayList<PuntoControl>()

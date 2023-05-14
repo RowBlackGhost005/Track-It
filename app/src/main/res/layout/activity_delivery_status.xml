@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:map="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -43,101 +43,20 @@
         android:id="@+id/mapStatus"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="580dp"
         map:uiRotateGestures="true"
         map:cameraZoom="16"
         map:uiZoomControls="true"
         />
 
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-
-
-    <LinearLayout
-        android:id="@+id/llDeliveryStatus_code"
-        android:layout_width="match_parent"
-        android:layout_height="87dp"
-        android:layout_margin="@dimen/dimen_16"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cibDeliveryStatus_details">
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ivStatus"
-            android:layout_width="@dimen/dimen_100"
-            android:layout_height="@dimen/dimen_50"
-            android:layout_margin="20dp"
-            android:src="@drawable/transportista" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvCode"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/lato_bold"
-            android:text="@string/tv_description"
-            android:textColor="@color/mainTextColor"
-            android:textSize="20sp" />
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/tvStatusDeliveryStatus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="EN CAMINO"
-        android:layout_gravity="center"
-        android:fontFamily="@font/lato_bold"
-        android:textColor="@color/mainAppColor"
-        android:textSize="20sp" />
-
-    <LinearLayout
-        android:id="@+id/llDeliveryStatus_details_trayectory"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dimen_16"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/llDeliveryStatus_code">
-
-        <androidx.appcompat.widget.AppCompatTextView
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/lato_bold"
-            android:text="Destino: "
-            android:textColor="@color/mainTextColor"
-            android:textSize="20sp" />
-        <TextView
-            android:id="@+id/tvDestino_deliveryStatus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="* Ciudad De México -> Ciudad Obregón"
-            android:textColor="@color/mainTextColor"
-            android:textSize="20sp" />
-
-        <Button
-            android:id="@+id/btnHistorialPuntos"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Ver historial"
-            />
-
-
-    </LinearLayout>
-
-</LinearLayout>
-
-
-
     <!--
-    <include layout="@layout/bottom_sheet_details"/>
     -->
+    <include
+        android:id="@+id/bottomSheetModificar"
+        layout="@layout/bottom_dialog_resource"/>
 
-</LinearLayout>
+
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

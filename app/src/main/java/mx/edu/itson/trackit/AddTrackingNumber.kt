@@ -27,8 +27,6 @@ class AddTrackingNumber : AppCompatActivity() {
 
             consultaEnvios()
 
-            var intent: Intent = Intent(this , MainPage::class.java)
-            startActivity(intent)
         }
 
         var ibReturnMainPage: ImageButton = findViewById(R.id.ibAddTrackingNumber_back)
@@ -141,6 +139,9 @@ class AddTrackingNumber : AppCompatActivity() {
 
                 actualizarUsuario(user?.uid.toString(),id.toString())
 
+                var intent: Intent = Intent(this , MainPage::class.java)
+                startActivity(intent)
+
                 Log.d("DB", "DocumentSnapshot data: ${document.data}")
             }else{
                 actualizarUsuario(user?.uid.toString(),id.toString())
@@ -154,6 +155,7 @@ class AddTrackingNumber : AppCompatActivity() {
         val userRef = firestoreDatabase.collection("users").document(id)
 
         userRef.update("parcels",FieldValue.arrayUnion(trackId))
+
 
     }
 

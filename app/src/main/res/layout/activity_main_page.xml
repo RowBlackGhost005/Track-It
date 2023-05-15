@@ -15,6 +15,8 @@
         android:rowCount="2"
         android:columnCount="1">
 
+
+
         <ImageView
             android:id="@+id/ivMainPage_logo"
             android:layout_width="64dp"
@@ -34,6 +36,7 @@
             android:textSize="24sp"/>
     </GridLayout>
 
+
     <ImageView
         android:id="@+id/ivMainPage_parcels"
         android:layout_width="256dp"
@@ -41,6 +44,17 @@
         android:layout_marginTop="16dp"
         android:src="@drawable/camion"
         android:layout_gravity="center"
+        android:visibility="visible"
+        />
+
+    <ListView
+        android:id="@+id/listViewMainPage"
+        android:layout_width="wrap_content"
+        android:layout_height="350dp"
+        android:layout_marginHorizontal="4dp"
+        android:divider="@null"
+        android:dividerHeight="5dp"
+        android:visibility="gone"
         />
 
     <TextView

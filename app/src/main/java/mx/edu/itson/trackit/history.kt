@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FieldValue
@@ -233,6 +235,8 @@ class history : AppCompatActivity() {
 
                             userRef.update("parcels",FieldValue.arrayRemove(relacionArchivado))
                                 .addOnSuccessListener {
+                                    var intent: Intent = Intent(contexto , history::class.java)
+                                    contexto?.startActivity(intent)
 
                                     Log.d("DB", "se ha eliminado con exito")
 

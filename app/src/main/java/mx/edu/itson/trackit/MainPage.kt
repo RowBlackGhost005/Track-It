@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.startActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FieldValue
@@ -81,8 +82,20 @@ class MainPage : AppCompatActivity() {
                 if (document != null) {
                     val usuario: Usuario? = document.toObject(Usuario::class.java)
 
+                    var paquetesHistorial: Int = 0
+                    var paquetesMain: Int = 0
 
-                    if(!usuario?.parcels!!.isEmpty()){
+                    var listaRelacionArchivado: ArrayList<RelacionArchivado> = usuario?.parcels!!
+
+                    listaRelacionArchivado.let{
+                        for (x in it){
+                            if(x.esArchivado==false){
+                                paquetesMain++
+                            }
+                        }
+                    }
+
+                    if(paquetesMain>0){
 
                         var img : ImageView = findViewById(R.id.ivMainPage_parcels)
                         var txt : TextView = findViewById(R.id.tvMainPage_noParcelRegisted)
@@ -257,7 +270,8 @@ class MainPage : AppCompatActivity() {
                                         Log.d("DB", "Error al actualizar el elemento en la lista: $exception")
                                     }
 
-
+                                var intent: Intent = Intent(contexto , MainPage::class.java)
+                                contexto?.startActivity(intent)
 
 
                             } else {
@@ -328,6 +342,7 @@ class MainPage : AppCompatActivity() {
                                         var list: ArrayList<RelacionArchivado>? = usuario?.parcels
 
                                         actualizarUsuario(list,trk.TrackId)
+
 
 
                                         Log.d("DB", "DocumentSnapshot data: ${document.data}")

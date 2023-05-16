@@ -38,7 +38,7 @@ class CreateAccount : AppCompatActivity() {
         }
     }
 
-    private fun validateData(): Boolean{
+    private fun validateData(): Boolean {
 
         //User Data
         var userFullname = binding.etCreateAccountFullName.text.toString()
@@ -49,21 +49,25 @@ class CreateAccount : AppCompatActivity() {
 
         //Validar datos
 
-        if(userFullname.isEmpty()){
-            Toast.makeText(baseContext,"Ingrese su nombre completo", Toast.LENGTH_SHORT).show()
+        if (userFullname.isEmpty()) {
+            Toast.makeText(baseContext, "Ingrese su nombre completo", Toast.LENGTH_SHORT).show()
             return false
         }
 
-        if(userUsername.isEmpty()){
-            Toast.makeText(baseContext,"Ingrese un nombre de usuario", Toast.LENGTH_SHORT).show()
+        if (!userFullname.matches(Regex("[/^[a-zA-Z\\s]*\$/]+"))) {
+            Toast.makeText(baseContext, "Nombre inválido", Toast.LENGTH_SHORT).show()
             return false
         }
 
-        if(userPassword.length < 3){
-            Toast.makeText(baseContext,"La contraseña debe tener mas de 3 caracteres", Toast.LENGTH_SHORT).show()
+        if (userUsername.isEmpty()) {
+            Toast.makeText(baseContext, "Ingrese un nombre de usuario", Toast.LENGTH_SHORT).show()
             return false
         }
 
+        if (!userUsername.matches(Regex("[/^[a-zA-Z\\s]*\$/]+"))) {
+            Toast.makeText(baseContext, "Nombre de usuario inválido", Toast.LENGTH_SHORT).show()
+            return false
+        }
         if(userEmail.isEmpty()){
             Toast.makeText(baseContext,"Ingrese su correo electrónico", Toast.LENGTH_SHORT).show()
             return false
@@ -71,6 +75,11 @@ class CreateAccount : AppCompatActivity() {
 
         if(!android.util.Patterns.EMAIL_ADDRESS.matcher(userEmail).matches()){
             Toast.makeText(baseContext,"Correo electrónico inválido", Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        if(userPassword.length < 6){
+            Toast.makeText(baseContext,"La contraseña debe tener 6 o más caracteres", Toast.LENGTH_SHORT).show()
             return false
         }
 

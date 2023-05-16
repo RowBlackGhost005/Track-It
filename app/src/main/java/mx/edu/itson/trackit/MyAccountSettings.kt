@@ -164,45 +164,80 @@ class MyAccountSettings : AppCompatActivity() {
     private fun updateProfilePic(profilePic:String){
         val firestoreDatabase =  Firebase.firestore
 
-        val washingtonRef = firestoreDatabase.collection("users").document(auth.uid!!)
+        val bdUsers = firestoreDatabase.collection("users").document(auth.uid!!)
 
-        washingtonRef
+        bdUsers
             .update("profilePic", profilePic)
             .addOnSuccessListener { Log.d("DB", "Foto de perfil actualizada!") ; Toast.makeText(baseContext, "Foto de perfil actualizada!", Toast.LENGTH_SHORT).show() ; fetchUserData()}
             .addOnFailureListener { e -> Log.w("DB", "Error actualizando la imágen", e) ; Toast.makeText(baseContext, "Error al actualizar la foto de perfil", Toast.LENGTH_SHORT).show() }
 
     }
     private fun updateUserData(userUid:String, newUserName:String, newFullName:String, newEmail:String){
+
+        if(!validateUserData(newUserName, newFullName, newEmail)){
+            return
+        }
+
+        if(newEmail != auth.currentUser!!.email){
+            auth.currentUser!!.updateEmail(newEmail)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        updateUserDataDataBase(userUid, newUserName, newFullName, newEmail)
+                        Log.d("AUTH", "User email address updated.")
+                    }
+                }
+                .addOnFailureListener{
+                    Toast.makeText(baseContext, "Error al actualizar el correo", Toast.LENGTH_SHORT).show()
+                    Log.d("AUTH", "Error al cambiar el correo del usuario.")
+                }
+        }else{
+            updateUserDataDataBase(userUid, newUserName, newFullName, newEmail)
+        }
+    }
+
+    private fun validateUserData(newUserName:String, newFullName:String, newEmail:String):Boolean{
+        if(!newUserName.matches(Regex("[/^[a-zA-Z\\s]*\$/]+"))){
+            Toast.makeText(baseContext, "Nombre de usuario inválido", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        if(!newFullName.matches(Regex("[/^[a-zA-Z\\s]*\$/]+"))){
+            Toast.makeText(baseContext, "Nombre inválido", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        if(!android.util.Patterns.EMAIL_ADDRESS.matcher(newEmail).matches()){
+            Toast.makeText(baseContext, "Email inválido", Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        return true
+    }
+
+    private fun updateUserDataDataBase(userUid:String, newUserName:String, newFullName:String, newEmail:String){
         val firestoreDatabase =  Firebase.firestore
+        val userDocument = firestoreDatabase.collection("users").document(userUid)
 
-        val washingtonRef = firestoreDatabase.collection("users").document(userUid)
-
-        washingtonRef
+        userDocument
             .update("username", newUserName, "name", newFullName, "email" , newEmail)
             .addOnSuccessListener { Log.d("DB", "Datos del usuario actualizados!") ; Toast.makeText(baseContext, "Datos actualizados", Toast.LENGTH_SHORT).show() ; fetchUserData()}
             .addOnFailureListener { e -> Log.w("DB", "Error actualizando el usuario", e) ; Toast.makeText(baseContext, "Error al actualizar los datos", Toast.LENGTH_SHORT).show() }
     }
 
-
     private fun fetchUserData() {
         val firestoreDatabase = Firebase.firestore
         val docRef = firestoreDatabase.collection("users").document(auth.uid.toString())
 
-        //Fetch Profile Pic
-        val Folder: StorageReference = FirebaseStorage.getInstance().getReference().child("usersProfilePics/"+ auth.uid.toString())
-        val localFile = java.io.File.createTempFile("tempImage" , "jpg")
-        Folder.getFile(localFile).addOnSuccessListener {
-            val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
-            val drawable: Drawable = BitmapDrawable(resources, bitmap)
-            binding.ibMyAccountSettingsProfilePic.setImageBitmap(bitmap)
-        }.addOnFailureListener {
-            Log.w("DB", "Error al cargar la foto de perfil del usuario") ; Toast.makeText(baseContext, "Error al cargar la foto de perfil", Toast.LENGTH_SHORT).show()
-        }
+        var user: Usuario?
 
         docRef.get()
             .addOnSuccessListener { document ->
                 if (document != null) {
-                    loadUserData(document.toObject(Usuario::class.java))
+                    user =  document.toObject(Usuario::class.java)
+
+                    if(user!!.profilePic != "default"){
+                        loadUserProfilePic()
+
+                    }
+                    loadUserData(user)
                     Log.d("DB", "DocumentSnapshot data: ${document.data}")
                 } else {
                     Log.d("DB", "No such document")
@@ -213,6 +248,18 @@ class MyAccountSettings : AppCompatActivity() {
             }
     }
 
+    private fun loadUserProfilePic(){
+        //Fetch Profile Pic
+        val Folder: StorageReference = FirebaseStorage.getInstance().getReference().child("usersProfilePics/"+ auth.uid.toString())
+        val localFile = java.io.File.createTempFile("tempImage" , "jpg")
+        Folder.getFile(localFile).addOnSuccessListener {
+            val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
+            val drawable: Drawable = BitmapDrawable(resources, bitmap)
+            binding.ibMyAccountSettingsProfilePic.setImageBitmap(bitmap)
+        }.addOnFailureListener {
+            Log.w("DB", "Error al cargar la foto de perfil del usuario") ; Toast.makeText(baseContext, "Error al cargar la foto de perfil", Toast.LENGTH_SHORT).show()
+        }
+    }
     private fun loadUserData(user:Usuario?){
         binding.tvMyAccountSettingsUserName.text = user!!.username
         binding.etMyAccountSettingsUserName.setText(user!!.username)

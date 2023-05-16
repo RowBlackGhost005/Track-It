@@ -16,6 +16,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import mx.edu.itson.trackit.data.Usuario
 import mx.edu.itson.trackit.databinding.ActivityMyAccountBinding
 import mx.edu.itson.trackit.databinding.ActivityMyAccountSettingsBinding
 
@@ -39,7 +40,7 @@ class MyAccount : AppCompatActivity() {
             startActivity(intent)
         }
 
-        binding.ivMyAccountTrackPackage.setOnClickListener() {
+        binding.ibMyAccountMyTrackings.setOnClickListener() {
             var intent: Intent = Intent(this, MainPage::class.java)
             startActivity(intent)
         }
@@ -86,6 +87,27 @@ class MyAccount : AppCompatActivity() {
         val firestoreDatabase = Firebase.firestore
         val docRef = firestoreDatabase.collection("users").document(auth.uid.toString())
 
+        docRef.get()
+            .addOnSuccessListener { document ->
+                if (document != null) {
+                    val user =  document.toObject(Usuario::class.java)
+
+                    if(user!!.profilePic != "default"){
+                        loadUserProfilePic()
+                    }
+
+                    Log.d("DB", "DocumentSnapshot data: ${document.data}")
+                } else {
+                    Log.d("DB", "No such document")
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.d("DB", "get failed with ", exception)
+            }
+
+    }
+
+    private fun loadUserProfilePic(){
         //Fetch Profile Pic
         val Folder: StorageReference = FirebaseStorage.getInstance().getReference()
             .child("usersProfilePics/" + auth.uid.toString())

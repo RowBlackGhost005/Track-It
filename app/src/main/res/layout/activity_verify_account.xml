@@ -24,7 +24,7 @@
         android:layout_height="160dp"
         android:layout_gravity="center"
         android:layout_marginVertical="8dp"
-        android:src="@drawable/usericon"/>
+        android:src="@drawable/cuenta"/>
 
     <TextView
         android:id="@+id/tvVerifyAccount_username"

@@ -51,8 +51,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:backgroundTintMode="screen"
             android:layout_marginStart="88dp"
-            app:cardCornerRadius="80dp">
+            app:cardCornerRadius="80dp"
+            app:cardElevation="@dimen/dimen_0">
 
             <ImageButton
                 android:id="@+id/ibMyAccountSettings_profilePic"
@@ -61,6 +64,7 @@
                 android:layout_gravity="center"
                 android:scaleType="centerCrop"
                 android:background="@android:color/transparent"
+                android:backgroundTintMode="screen"
                 android:src="@drawable/agregarimagen"
                 android:adjustViewBounds="true"/>
         </androidx.cardview.widget.CardView>
@@ -101,6 +105,7 @@
         android:layout_gravity="center"
         android:ems="24"
         android:inputType="text"
+        android:maxLength="16"
         android:text="#USERNAME#"
         android:textSize="16sp"
         android:fontFamily="@font/lato_regular"
@@ -116,7 +121,8 @@
         android:layout_marginVertical="4dp"
         android:layout_gravity="center"
         android:ems="24"
-        android:inputType="text"
+        android:inputType="textPersonName"
+        android:maxLength="72"
         android:text="#NAME#"
         android:textSize="16sp"
         android:fontFamily="@font/lato_regular"
@@ -132,7 +138,8 @@
         android:layout_marginVertical="4dp"
         android:layout_gravity="center"
         android:ems="24"
-        android:inputType="text"
+        android:inputType="textEmailAddress"
+        android:maxLength="72"
         android:text="#EMAIL"
         android:textSize="16sp"
         android:fontFamily="@font/lato_regular"

@@ -6,39 +6,47 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:behavior_hideable="true"
     app:behavior_peekHeight="100dp"
-    android:background="@android:color/black"
+    android:background="@android:color/white"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
     >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
+        android:orientation="vertical">
 
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/cibDeliveryStatus_details"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:backgroundTint="@android:color/transparent"
+            android:src="@drawable/despliegue" />
 
         <LinearLayout
             android:id="@+id/llDeliveryStatus_code"
             android:layout_width="match_parent"
-            android:layout_height="87dp"
-            android:layout_margin="@dimen/dimen_16"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dimen_16"
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/ivStatus"
                 android:layout_width="@dimen/dimen_100"
                 android:layout_height="@dimen/dimen_50"
-                android:layout_margin="20dp"
-                android:src="@drawable/transportista" />
+                android:layout_margin="5dp"
+                android:layout_gravity="center"
+                android:src="@drawable/transportista"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvCode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_gravity="center|start"
                 android:fontFamily="@font/lato_bold"
                 android:text="@string/tv_description"
                 android:textColor="@color/mainTextColor"
+                android:textAlignment="textStart"
                 android:textSize="20sp" />
         </LinearLayout>
     </LinearLayout>
@@ -48,6 +56,7 @@
         android:id="@+id/tvStatusDeliveryStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginVertical="4dp"
         android:text="EN CAMINO"
         android:layout_gravity="center"
         android:fontFamily="@font/lato_bold"
@@ -58,36 +67,35 @@
         android:id="@+id/llDeliveryStatus_details_trayectory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dimen_16"
-        android:orientation="vertical"
-        >
+        android:layout_marginHorizontal="@dimen/dimen_16"
+        android:orientation="vertical">
 
         <androidx.appcompat.widget.AppCompatTextView
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/lato_bold"
             android:text="Destino: "
             android:textColor="@color/mainTextColor"
-            android:textSize="20sp" />
+            android:textSize="20sp"/>
+
         <TextView
             android:id="@+id/tvDestino_deliveryStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="* Ciudad De México -> Ciudad Obregón"
             android:textColor="@color/mainTextColor"
-            android:textSize="20sp" />
+            android:textSize="20sp"/>
 
     </LinearLayout>
 
 
     <ListView
         android:id="@+id/listViewHistorialPuntos"
-        android:layout_width="407dp"
-        android:layout_height="491dp"
-        android:layout_marginHorizontal="4dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
         android:divider="@null"
-        android:dividerHeight="5dp" />
+        android:dividerHeight="4dp"/>
 
 </LinearLayout>

@@ -93,7 +93,7 @@
         android:layout_gravity="center"/>
 
 
-
+<!--
     <TextView
         android:id="@+id/tvMain_loginWith"
         android:layout_width="wrap_content"
@@ -137,5 +137,5 @@
             android:src="@drawable/googlelogin"/>
 
     </LinearLayout>
-
+-->
 </LinearLayout>

@@ -16,6 +16,7 @@ import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import mx.edu.itson.trackit.data.Envio
 import mx.edu.itson.trackit.data.PuntoControl
+import mx.edu.itson.trackit.data.RelacionArchivado
 import mx.edu.itson.trackit.data.Usuario
 
 class tracking_menu : AppCompatActivity() {
@@ -121,9 +122,9 @@ class tracking_menu : AppCompatActivity() {
                 if (document != null) {
                     val usuario: Usuario? = document.toObject(Usuario::class.java)
 
-                    var list: ArrayList<String>? = usuario?.parcels
+                    var list: ArrayList<RelacionArchivado>? = usuario?.parcels
 
-                    this.parcels = list
+                    //this.parcels = list
 
                     consultaEnvios()
 

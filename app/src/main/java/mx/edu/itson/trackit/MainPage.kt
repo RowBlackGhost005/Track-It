@@ -2,8 +2,6 @@ package mx.edu.itson.trackit
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,14 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isVisible
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import mx.edu.itson.trackit.data.Envio
+import mx.edu.itson.trackit.data.RelacionArchivado
 import mx.edu.itson.trackit.data.Usuario
 import mx.edu.itson.trackit.databinding.ActivityMainPageBinding
 
@@ -31,7 +28,8 @@ class MainPage : AppCompatActivity() {
     //contiene objetos tipo envio
     var parcelsobj: ArrayList<Envio> =ArrayList()
     //lista de a
-    var parcels: ArrayList<String>? = ArrayList()
+    var parcels: ArrayList<RelacionArchivado>? = ArrayList()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,8 +48,6 @@ class MainPage : AppCompatActivity() {
             var intent: Intent = Intent(this , AddTrackingNumber::class.java)
             startActivity(intent)
         }
-
-
 
         /**
         var myTrackings: ImageButton = findViewById(R.id.ibMainPage_myTrackings)
@@ -139,12 +135,13 @@ class MainPage : AppCompatActivity() {
             for (x in it){
 
                 val index = it.indexOf(x)
-                val envioRef = firestoreDatabase.collection("envios").document(parcels?.get(index).toString())
+                val envioRef = firestoreDatabase.collection("envios").document(parcels?.get(index)?.trackId.toString())
 
                 envioRef.get()
                     .addOnSuccessListener { document ->
                         if (document != null) {
                             val envio: Envio? = document.toObject(Envio::class.java)
+
 
                             parcelsobj?.add(envio!!)
 
@@ -182,9 +179,20 @@ class MainPage : AppCompatActivity() {
                 if (document != null) {
                     val usuario: Usuario? = document.toObject(Usuario::class.java)
 
-                    var list: ArrayList<String>? = usuario?.parcels
+                    var list: ArrayList<RelacionArchivado>? = usuario?.parcels
 
-                    this.parcels = list
+                    list?.let {
+                        for (x in it) {
+                              var relacionArchivado: RelacionArchivado = x
+
+                              if(relacionArchivado.esArchivado){
+
+                              }else{
+                                  this.parcels?.add(relacionArchivado)
+                              }
+
+                        }
+                    }
 
                     consultaEnvios()
 
@@ -197,7 +205,6 @@ class MainPage : AppCompatActivity() {
                 Log.d("DB", "get failed with ", exception)
             }
     }
-
 
     private class AdaptadorRastreos: BaseAdapter {
         var rastreos=ArrayList<Envio>()
@@ -221,10 +228,62 @@ class MainPage : AppCompatActivity() {
             return p0.toLong()
         }
 
+        fun actualizarUsuario(envios: ArrayList<RelacionArchivado>?,trk:String){
+
+
+            val user = Firebase.auth.currentUser
+            val firestoreDatabase = Firebase.firestore
+            val userRef = firestoreDatabase.collection("users").document(user?.uid.toString())
+            var relacionArchivado= RelacionArchivado(trk , false)
+
+            if (envios!!.contains(relacionArchivado)) {
+                userRef.get()
+                    .addOnSuccessListener { documentSnapshot ->
+                        if (documentSnapshot.exists()) {
+                            val userData = documentSnapshot.toObject(Usuario::class.java)
+                            val parcelsList = userData?.parcels ?: ArrayList()
+
+                            val actualizar = parcelsList.indexOf(relacionArchivado)
+                            if (actualizar != -1) {
+                                val elementoActualizado = RelacionArchivado(trk, true)
+                                parcelsList[actualizar] = elementoActualizado
+
+                                userRef.update("parcels", parcelsList)
+                                    .addOnSuccessListener {
+
+                                        Log.d("DB", "Elemento actualizado correctamente en la lista")
+                                    }
+                                    .addOnFailureListener { exception ->
+                                        Log.d("DB", "Error al actualizar el elemento en la lista: $exception")
+                                    }
+
+
+
+
+                            } else {
+                                Log.d("DB", "No se encontró el paquete en la lista")
+                            }
+                        } else {
+                            Log.d("DB", "No se encontró el documento del usuario")
+                        }
+                    }
+                    .addOnFailureListener { exception ->
+                        Log.d("DB", "Error al obtener el documento del usuario: $exception")
+                    }
+            } else {
+                Log.d("DB", "No se encontró el paquete")
+            }
+
+
+
+
+        }
+
         override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
             var trk=rastreos[p0]
             var inflador= LayoutInflater.from(contexto)
             var vista = inflador.inflate(R.layout.rastreo_view,null)
+
 
             vista.setOnClickListener(){
                 var intent: Intent = Intent(contexto , DeliveryStatus::class.java)
@@ -247,6 +306,49 @@ class MainPage : AppCompatActivity() {
             var status= vista.findViewById(R.id.tvTrackingObject_status) as TextView
             var carrier= vista.findViewById(R.id.tvTrackingObject_status2) as TextView
 
+            var imageButton = vista.findViewById(R.id.ibStatusTracking_Settings) as ImageView
+
+            imageButton.setOnClickListener {
+                val popupMenu = PopupMenu(contexto, imageButton)
+                popupMenu.inflate(R.menu.menu)
+
+                popupMenu.setOnMenuItemClickListener { item ->
+                    when (item.itemId) {
+                        R.id.botonArchivar -> {
+
+                            val user = Firebase.auth.currentUser
+                            val firestoreDatabase = Firebase.firestore
+                            val userRef = firestoreDatabase.collection("users").document(user?.uid.toString())
+
+                            userRef.get()
+                                .addOnSuccessListener { document ->
+                                    if (document != null) {
+                                        val usuario: Usuario? = document.toObject(Usuario::class.java)
+
+                                        var list: ArrayList<RelacionArchivado>? = usuario?.parcels
+
+                                        actualizarUsuario(list,trk.TrackId)
+
+
+                                        Log.d("DB", "DocumentSnapshot data: ${document.data}")
+                                    } else {
+                                        Log.d("DB", "No such document")
+                                    }
+                                }
+                                .addOnFailureListener { exception ->
+                                    Log.d("DB", "get failed with ", exception)
+                                }
+
+                            true
+                        }
+                        else -> false
+                    }
+                }
+
+                popupMenu.show()
+            }
+
+
             var icono: Int
 
             if(trk.Estado.equals("en camino")){
@@ -256,7 +358,6 @@ class MainPage : AppCompatActivity() {
             }else{
                 icono = R.drawable.enespera
             }
-
 
             imagen.setImageResource(icono)
             codigoRastreo.setText(trk.TrackId)

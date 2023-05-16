@@ -14,6 +14,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import mx.edu.itson.trackit.data.Envio
+import mx.edu.itson.trackit.data.RelacionArchivado
 import mx.edu.itson.trackit.data.Usuario
 
 class AddTrackingNumber : AppCompatActivity() {
@@ -101,7 +102,10 @@ class AddTrackingNumber : AppCompatActivity() {
 
                     val usuario: Usuario? = document.toObject(Usuario::class.java)
                     //si no contiene, entonces procede a agregar envio
-                    if(!usuario?.parcels!!.contains(id.toString())){
+                    var relacionArchivado = RelacionArchivado(id.toString(),false)
+                    var relacionArchivado2 = RelacionArchivado(id.toString(),true)
+
+                    if(!usuario?.parcels!!.contains(relacionArchivado) && !usuario?.parcels!!.contains(relacionArchivado2)){
 
                         guardaEnvio(envio,id)
 
@@ -154,8 +158,16 @@ class AddTrackingNumber : AppCompatActivity() {
         val firestoreDatabase = Firebase.firestore
         val userRef = firestoreDatabase.collection("users").document(id)
 
-        userRef.update("parcels",FieldValue.arrayUnion(trackId))
 
+        var relacionArchivado = RelacionArchivado(trackId,false)
+
+        userRef.update("parcels",FieldValue.arrayUnion(relacionArchivado))
+            .addOnSuccessListener {
+                Log.d("DB", "Elemento agregado correctamente a la lista")
+            }
+            .addOnFailureListener { exception ->
+                Log.d("DB", "Error al agregar el elemento a la lista: $exception")
+            }
 
     }
 

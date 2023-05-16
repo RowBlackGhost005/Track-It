@@ -5,8 +5,10 @@ import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.text.InputType
 import android.util.Log
 import android.view.View
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -19,6 +21,8 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import mx.edu.itson.trackit.data.Usuario
 import mx.edu.itson.trackit.databinding.ActivityMyAccountSettingsBinding
+import java.util.jar.Attributes.Name
+
 
 class MyAccountSettings : AppCompatActivity() {
 
@@ -179,20 +183,67 @@ class MyAccountSettings : AppCompatActivity() {
         }
 
         if(newEmail != auth.currentUser!!.email){
-            auth.currentUser!!.updateEmail(newEmail)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        updateUserDataDataBase(userUid, newUserName, newFullName, newEmail)
-                        Log.d("AUTH", "User email address updated.")
-                    }
-                }
-                .addOnFailureListener{
-                    Toast.makeText(baseContext, "Error al actualizar el correo", Toast.LENGTH_SHORT).show()
-                    Log.d("AUTH", "Error al cambiar el correo del usuario.")
-                }
+            reAuth(userUid , newUserName , newFullName , newEmail)
+
         }else{
             updateUserDataDataBase(userUid, newUserName, newFullName, newEmail)
         }
+    }
+
+    private fun reAuth(userUid:String, newUserName:String, newFullName:String, newEmail:String){
+        var password = ""
+        var authenticated = false
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Confirmar contraseña")
+
+        val input = EditText(this)
+
+        input.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+        builder.setView(input)
+
+        builder.setPositiveButton(
+            "OK"
+        ) { dialog, which -> password = input.text.toString() ; authUser(newEmail , password , userUid, newUserName , newFullName) }
+        builder.setNegativeButton(
+            "Cancel"
+        ) { dialog, which -> dialog.cancel() }
+
+        builder.show()
+    }
+
+    private fun authUser(email:String ,password:String, userUid:String, userName:String, fullName:String){
+        var currentEmail = auth.currentUser!!.email
+
+        auth.signInWithEmailAndPassword(currentEmail!!, password)
+            .addOnCompleteListener(this){ task ->
+                if(task.isSuccessful){
+                    Log.d("AUTH","signInWithEmail:success")
+                    Log.d("AUTH", auth.uid.toString())
+                    changeEmail(email ,password, userUid, userName, fullName)
+                }else{
+                    Log.w("TAG","signInWithEmail:failure",task.exception)
+                    Toast.makeText(baseContext,"Credenciales incorrectas.", Toast.LENGTH_SHORT).show()
+                }
+            }
+    }
+
+    private fun changeEmail(email:String ,password:String, userUid:String, userName:String, fullName:String){
+        auth.currentUser!!.updateEmail(email)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    auth.currentUser!!.sendEmailVerification()
+                    auth.signOut()
+                    val intent= Intent(this, MainActivity::class.java)
+                    this.startActivity(intent)
+                    updateUserDataDataBase(userUid, userName, fullName, email)
+                    Toast.makeText(baseContext,"Valide su nuevo correo electrónico.", Toast.LENGTH_SHORT).show()
+                    Log.d("AUTH", "User email address updated.")
+                }
+            }
+            .addOnFailureListener{e ->
+                Toast.makeText(baseContext, "Error al actualizar el correo", Toast.LENGTH_SHORT).show()
+                Log.d("AUTH", "Error al cambiar el correo del usuario." + e.message)
+            }
     }
 
     private fun validateUserData(newUserName:String, newFullName:String, newEmail:String):Boolean{

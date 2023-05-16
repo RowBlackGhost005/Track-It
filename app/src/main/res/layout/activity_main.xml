@@ -36,7 +36,7 @@
         android:layout_gravity="center"
         android:ems="24"
         android:inputType="text"
-        android:hint="@string/userName"
+        android:hint="Correo Electrónico"
         android:textSize="16sp"
         android:fontFamily="@font/lato_regular"
         android:textColorHint="@color/secondTextColor"

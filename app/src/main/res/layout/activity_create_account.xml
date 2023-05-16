@@ -113,49 +113,49 @@
         android:textColor="@color/contrastTextColor"
         android:fontFamily="@font/lato_bold"
         android:layout_gravity="center"/>
-
-    <TextView
-        android:id="@+id/tvCreateAccount_loginWith"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="32dp"
-        android:textSize="16sp"
-        android:text="@string/loginWith"
-        android:fontFamily="@font/lato_bold"
-        android:textColor="@color/secondTextColor"/>
-
-    <LinearLayout
-        android:id="@+id/llCreateAccount_loginWith"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center">
-
-        <ImageView
-            android:id="@+id/ivCreateAccount_facebookLogin"
-            android:layout_width="72dp"
-            android:layout_height="72dp"
-            android:layout_marginHorizontal="32dp"
+    <!--
+        <TextView
+            android:id="@+id/tvCreateAccount_loginWith"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:src="@drawable/facebooklogin"/>
+            android:layout_marginTop="32dp"
+            android:textSize="16sp"
+            android:text="@string/loginWith"
+            android:fontFamily="@font/lato_bold"
+            android:textColor="@color/secondTextColor"/>
 
-        <ImageView
-            android:id="@+id/ivCreateAccount_instagramLogin"
-            android:layout_width="72dp"
-            android:layout_height="72dp"
-            android:layout_marginHorizontal="32dp"
-            android:layout_gravity="center"
-            android:src="@drawable/instagramlogin"/>
+        <LinearLayout
+            android:id="@+id/llCreateAccount_loginWith"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
 
-        <ImageView
-            android:id="@+id/ivCreateAccount_googleLogin"
-            android:layout_width="72dp"
-            android:layout_height="72dp"
-            android:layout_marginHorizontal="32dp"
-            android:layout_gravity="center"
-            android:src="@drawable/googlelogin"/>
+            <ImageView
+                android:id="@+id/ivCreateAccount_facebookLogin"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:layout_marginHorizontal="32dp"
+                android:layout_gravity="center"
+                android:src="@drawable/facebooklogin"/>
 
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/ivCreateAccount_instagramLogin"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:layout_marginHorizontal="32dp"
+                android:layout_gravity="center"
+                android:src="@drawable/instagramlogin"/>
 
+            <ImageView
+                android:id="@+id/ivCreateAccount_googleLogin"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:layout_marginHorizontal="32dp"
+                android:layout_gravity="center"
+                android:src="@drawable/googlelogin"/>
+
+        </LinearLayout>
+    -->
 </LinearLayout>

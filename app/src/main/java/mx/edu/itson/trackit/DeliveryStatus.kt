@@ -17,6 +17,9 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import mx.edu.itson.trackit.data.PuntoControl
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class DeliveryStatus : AppCompatActivity(), OnMapReadyCallback {
@@ -55,12 +58,14 @@ class DeliveryStatus : AppCompatActivity(), OnMapReadyCallback {
         estadoView.setText(estado)
         destinoView.setText(destino)
 
-        if(estado.equals("en camino")){
+        if(estado.equals("en camino" , true)){
             iconoView.setImageResource(R.drawable.transportista)
-        }else if(estado.equals("entregado")){
+        }else if(estado.equals("entregado", true)){
             iconoView.setImageResource(R.drawable.entregado)
+            estadoView.setTextColor(getResources().getColor(R.color.green))
         }else {
             iconoView.setImageResource(R.drawable.enespera)
+            estadoView.setTextColor(getResources().getColor(R.color.red))
         }
 
         //botones para redirigir
@@ -142,9 +147,13 @@ class DeliveryStatus : AppCompatActivity(), OnMapReadyCallback {
             var DescripcionView= vista.findViewById(R.id.tvDescripcion_bottomsheet) as TextView
             var timeView= vista.findViewById(R.id.tvTimestamp_bottomsheet) as TextView
 
+            val pattern = "dd-MM-yyyy hh:mm"
+            val simpleDateFormat = SimpleDateFormat(pattern)
+            val date: String = simpleDateFormat.format(punto.fechaPuntoControl)
+
             locacionView.setText(punto.Locacion.toString())
             DescripcionView.setText(punto.Descripcion.toString())
-            timeView.setText(punto.fechaPuntoControl.toString())
+            timeView.setText(date)
 
             return vista
 

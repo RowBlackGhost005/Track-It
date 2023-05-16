@@ -55,7 +55,7 @@
         android:layout_marginHorizontal="16dp"
         android:layout_gravity="center"
         android:ems="24"
-        android:inputType="text"
+        android:inputType="number"
         android:hint="@string/typeTrackingNumber"
         android:textSize="16sp"
         android:fontFamily="@font/lato_regular"

@@ -25,7 +25,7 @@ class MainPage : AppCompatActivity() {
 
     private var comprobar: Int? = 0
     private lateinit var auth: FirebaseAuth
-    private lateinit var binding: ActivityMainPageBinding
+    private lateinit var binding:ActivityMainPageBinding
     //contiene objetos tipo envio
     var parcelsobj: ArrayList<Envio> =ArrayList()
     //lista de a
@@ -366,9 +366,9 @@ class MainPage : AppCompatActivity() {
 
             var icono: Int
 
-            if(trk.Estado.equals("en camino")){
+            if(trk.Estado.equals("en camino" , true)){
                 icono = R.drawable.transportista
-            }else if(trk.Estado.equals("entregado")){
+            }else if(trk.Estado.equals("entregado" , true)){
                 icono = R.drawable.entregado
             }else{
                 icono = R.drawable.enespera

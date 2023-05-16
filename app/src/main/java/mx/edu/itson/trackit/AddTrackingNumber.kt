@@ -10,17 +10,29 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FieldValue
-import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import mx.edu.itson.trackit.data.Envio
 import mx.edu.itson.trackit.data.RelacionArchivado
 import mx.edu.itson.trackit.data.Usuario
+import mx.edu.itson.trackit.databinding.ActivityAddTrackingNumberBinding
+import mx.edu.itson.trackit.databinding.ActivityScanQrcodeBinding
 
 class AddTrackingNumber : AppCompatActivity() {
+
+    private lateinit var binding:ActivityAddTrackingNumberBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_tracking_number)
+
+        binding = ActivityAddTrackingNumberBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        var trackingid = intent.getStringExtra("tracking")
+
+        if(!trackingid.isNullOrEmpty()){
+            binding.etAddTrackingNumberTrackingNumber.setText(trackingid)
+        }
 
         var btnTrackPackage: Button = findViewById(R.id.btnAddTrackingNumber_trackPackage)
 
@@ -40,8 +52,9 @@ class AddTrackingNumber : AppCompatActivity() {
         var trackByQR: Button = findViewById(R.id.btnAddTrackingNumber_trackByQr)
 
         trackByQR.setOnClickListener(){
-            var intent: Intent = Intent(this , ScanQRCode::class.java)
-            startActivity(intent)
+            startActivity(Intent(this@AddTrackingNumber, ScanQRCode::class.java))
+            //var intent: Intent = Intent(this , ScanQRCode::class.java)
+            //startActivity(intent)
         }
     }
 
@@ -112,7 +125,7 @@ class AddTrackingNumber : AppCompatActivity() {
                     }else{
                         //muestra mensaje de que ya se contiene el envio
                         val toast =
-                            Toast.makeText(applicationContext, "Envio ya esta registrado en la cuenta", Toast.LENGTH_SHORT)
+                            Toast.makeText(applicationContext, "Envio ya registrado en la cuenta", Toast.LENGTH_SHORT)
                         toast.setMargin(50f, 50f)
                         toast.show()
                     }

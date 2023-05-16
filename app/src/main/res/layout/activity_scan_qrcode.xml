@@ -1,98 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ScanQRCode">
+    android:padding="8dp">
 
-    <LinearLayout
-        android:id="@+id/llScanQRCode_header"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="8dp"
-        android:layout_marginTop="8dp"
-        android:orientation="horizontal">
 
-        <ImageButton
-            android:id="@+id/ibScanQRCode_back"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:scaleType="fitCenter"
-            android:backgroundTint="@color/secondAppColor"
-            android:src="@drawable/regresar"/>
 
-        <TextView
-            android:id="@+id/tvScanQRCode_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:fontFamily="@font/lato_bold"
-            android:text="@string/addTrackingNumber"
-            android:textColor="@color/mainTextColor"
-            android:textSize="24sp"/>
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/tvScanQRCode_scanQrCode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_gravity="start"
-        android:fontFamily="@font/lato_regular"
-        android:text="@string/scanQRCode"
-        android:textColor="@color/mainTextColor"
-        android:textSize="16sp"/>
-
-    <ImageView
-        android:id="@+id/ivScanQRCode_QRScanner"
-        android:layout_width="256dp"
-        android:layout_height="256dp"
-        android:layout_gravity="center"
-        android:src="@drawable/qr"/>
-
-    <TextView
-        android:id="@+id/tvScanQRCode_QRStatus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_gravity="center"
-        android:fontFamily="@font/lato_regular"
-        android:text="@string/qrStatus"
-        android:textColor="@color/mainTextColor"
-        android:textSize="16sp"/>
-
-    <Button
-        android:id="@+id/btnScanQRCode_redoQRScan"
-        android:layout_width="256dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="64dp"
-        android:gravity="center"
-        android:text="@string/redoQRScan"
-        android:textSize="12sp"
-        android:textColor="@color/contrastTextColor"
-        android:fontFamily="@font/lato_bold"
-        android:layout_gravity="center"/>
-
-    <RelativeLayout
-        android:id="@+id/glScanQRCode_navButtons"
+    <SurfaceView
+        android:id="@+id/surfaceView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="-6dp"
-        android:gravity="bottom">
+        android:layout_above="@+id/btnAction"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true" />
 
-        <Button
-            android:id="@+id/btnScanQRCode_trackPackage"
-            android:layout_width="match_parent"
-            android:layout_height="96dp"
-            android:layout_marginLeft="-5dp"
-            android:layout_marginRight="-5dp"
-            android:text="@string/confirmTracking"
-            android:fontFamily="@font/lato_bold"/>
-    </RelativeLayout>
+    <TextView
+        android:id="@+id/txtBarcodeValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="110dp"
+        android:layout_marginStart="110dp"
+        android:textAlignment="center"
+        android:text="QR NO DETECTADO"
+        android:textColor="@android:color/white"
+        android:textSize="20sp" />
 
-</LinearLayout>
+
+    <Button
+        android:id="@+id/btnAction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="DETECTANDO QR" />
+
+</RelativeLayout>
